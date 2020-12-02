@@ -600,6 +600,13 @@ input::placeholder {
     overflow-y: auto;
     overflow-x: hidden;
   }
+  .c-app__sidebar::-webkit-scrollbar {
+    display: none;
+}
+.c-app__sidebar{
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
 }
 
 /*
