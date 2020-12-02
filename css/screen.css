@@ -523,45 +523,7 @@ input::placeholder {
     Global loader component
 */
 
-.c-load-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
 
-  width: 100%;
-  min-height: 376px;
-}
-
-.c-loader {
-  /* // all metrics should be in px otherwise calc won't work for some reason. */
-  --loader-viewbox: 50px; /* this variable should be the same as the viewbox attribute in html. */
-  --loader__circle-stroke-width: 5px;
-  --loader__circle-center: calc(var(--loader-viewbox) / 2);
-  /* // The stroke is centered so we need to take that into account.
-    // Otherwise some parts would be outside of the viewbox */
-  --loader__circle-radius: calc(var(--loader-viewbox) / 2 - var(--loader__circle-stroke-width) / 2);
-  --loader__circle-circumference: calc(var(--loader__circle-radius) * 2 * var(--pi));
-  --loader__circle-gap: 20px;
-  --loader__circle-circumference-gap: calc(var(--loader__circle-circumference) - var(--loader__circle-gap));
-  --animation-duration: 1.5s;
-  width: var(--loader-viewbox);
-  height: var(--loader-viewbox);
-  transition: opacity var(--global-transition-beta);
-}
-
-.c-loader__circle {
-  stroke: OrangeRed;
-  fill: transparent;
-  stroke-linecap: round;
-  stroke-width: var(--loader__circle-stroke-width);
-  stroke-dasharray: var(--loader__circle-gap), var(--loader__circle-circumference-gap);
-  stroke-dashoffset: 0;
-  r: var(--loader__circle-radius);
-  cx: var(--loader__circle-center);
-  cy: var(--loader__circle-center);
-  animation: rotateCircle calc(var(--animation-duration) + 0.25s) linear infinite, strokeCircle var(--animation-duration) infinite, strokeColor calc(var(--animation-duration) * 5) calc(var(--animation-duration) / 2) infinite;
-  transform-origin: center;
-}
 
 
 /*
@@ -1006,8 +968,9 @@ input::placeholder {
 }
 
 .c-dashboard__item {
-  box-shadow: var(--global-box-shadow);
+
   background-color: #fff;
+  border-radius: 15px;
 }
 
 @media screen and (min-width: 62em) {
@@ -1044,7 +1007,7 @@ input::placeholder {
 }
 
 .c-card__header {
-  border-bottom: 5px solid  var(--global-color-neutral-xxxx-light);
+  border-bottom: 10px solid  var(--global-color-neutral-xxxx-light);
   height: 80px;
 }
 
@@ -1055,6 +1018,20 @@ input::placeholder {
 .c-card__buttons{
   display: flex;
   justify-content: space-between;
+  margin-top: 10px;
+}
+.c-card__bin{
+  height: 30px;
+}
+
+.c-card__bin-top {
+  transition: all 0.75s ease-in;
+
+}
+
+.c-card__bin--clicked > .c-card__bin-top{
+  transform: rotate(-15deg);
+  transform-origin: left bottom;
 }
 /*
     Component: Input

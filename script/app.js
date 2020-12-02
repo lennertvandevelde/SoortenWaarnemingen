@@ -5,6 +5,19 @@ let plabels = [];
 let values = [];
 let first = true;
 let saves = [];
+const deleteCard = function(element){
+  console.log("delete");
+  plabels.splice(plabels.indexOf(element.getAttribute('data-name')), 1);
+  values.splice(values.indexOf(element.getAttribute('data-count')), 1);
+  saves.splice(saves.indexOf(element.getAttribute('data-id')), 1);
+  element.classList.add("c-card__bin--clicked");
+  let card = document.querySelector(`.js-${element.getAttribute('data-id')}`)
+  setTimeout(function () {
+    card.remove();
+  }, 1200);
+  updateChart()
+  checkClicks()
+}
 const checkClicks = function () {
   let adds = document.querySelectorAll('.js-add');
   adds.forEach((add) => {
@@ -13,6 +26,11 @@ const checkClicks = function () {
       setTimeout(function () {
         add.classList.add('o-hide-accessible');
       }, 2000);
+    }
+    else{
+      console.log(saves)
+      add.classList.remove('c-clicked');
+      add.classList.remove('o-hide-accessible');
     }
   });
 };
@@ -115,7 +133,7 @@ const save = async (id) => {
   }
   console.log(image);
   let html = ' ';
-  html = `<div class="c-dashboard__item u-x-span-3-bp3 ">
+  html = `<div class="c-dashboard__item u-x-span-3-bp3 js-${data.key}">
 				<div class="c-card">
 				<div class="c-card__header">
 					<h2 class="c-card__title">${data.scientificName}</h2>`;
@@ -125,8 +143,8 @@ const save = async (id) => {
   html += `</div>
 				<div class="c-card__body">
 					<img src="${image}" alt="Afbeelding van ${data.scientificName}" onerror="this.src='https://www.signfix.com.au/wp-content/uploads/2017/09/placeholder-600x400.png'" style="width : 100%; height: 25vh;  object-fit: cover;">
-					<input class="o-hide-accessible c-option c-option--hidden js-checkbox" type="checkbox" id="checkbox${data.key}" data-name="${data.scientificName}">
-					<div class="c-card__buttons">
+          <div class="c-card__buttons">
+          	<input class="o-hide-accessible c-option c-option--hidden js-checkbox" type="checkbox" id="checkbox${data.key}" data-name="${data.scientificName}">
 					  <label class="c-label c-label--option c-custom-option js-show-label" data-id="${data.key}" data-count="${data3}" data-name="${data.scientificName}" data-checked=false for="checkbox${data.key}">
   						<span class="c-custom-option__fake-input c-custom-option__fake-input--checkbox">
   							<svg class="c-custom-option__symbol" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 9 6.75">
@@ -135,41 +153,19 @@ const save = async (id) => {
   						</span>
   						Toon op grafiek
             </label>
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="44" viewBox="0 0 24 48">
-  <g id="Group_10" data-name="Group 10" transform="translate(-530 1517.104)">
-    <g id="Rectangle_266" data-name="Rectangle 266" transform="translate(532 -1503.104)" fill="#fff" stroke="#707070" stroke-width="2">
-      <path d="M0,0H20a0,0,0,0,1,0,0V27a5,5,0,0,1-5,5H5a5,5,0,0,1-5-5V0A0,0,0,0,1,0,0Z" stroke="none"/>
-      <path d="M0-1H20a1,1,0,0,1,1,1V27a6,6,0,0,1-6,6H5a6,6,0,0,1-6-6V0A1,1,0,0,1,0-1Z" fill="none"/>
-    </g>
-    <g id="Union_1" data-name="Union 1" transform="translate(532 -1515.104)" fill="#fff">
-      <path d="M 20.99979972839355 8.000200271606445 L 19.99979972839355 8.000200271606445 L -1.358032193365943e-07 8.000200271606445 L -1.00000011920929 8.000200271606445 L -1.00000011920929 7.000200271606445 L -1.00000011920929 3.167100191116333 C -1.00000011920929 1.512510180473328 0.3456998765468597 0.166400134563446 1.999799847602844 0.166400134563446 L 7.749799728393555 0.166400134563446 L 7.749799728393555 1.358032193365943e-07 L 7.749799728393555 -0.9999998807907104 L 8.749799728393555 -0.9999998807907104 L 11.87459945678711 -0.9999998807907104 L 12.87459945678711 -0.9999998807907104 L 12.87459945678711 1.358032193365943e-07 L 12.87459945678711 0.166400134563446 L 18 0.166400134563446 C 19.65410041809082 0.166400134563446 20.99979972839355 1.512510180473328 20.99979972839355 3.167100191116333 L 20.99979972839355 7.000200271606445 L 20.99979972839355 8.000200271606445 Z" stroke="none"/>
-      <path d="M 19.99979972839355 7.000200271606445 L 19.99979972839355 3.167100191116333 C 19.99979972839355 2.06190013885498 19.10429954528809 1.166400194168091 18 1.166400194168091 L 11.87459945678711 1.166400194168091 L 11.87459945678711 1.358032193365943e-07 L 8.749799728393555 1.358032193365943e-07 L 8.749799728393555 1.166400194168091 L 1.999799847602844 1.166400194168091 C 0.8954998850822449 1.166400194168091 -1.358032193365943e-07 2.06190013885498 -1.358032193365943e-07 3.167100191116333 L -1.358032193365943e-07 7.000200271606445 L 19.99979972839355 7.000200271606445 M 21.99979972839355 9.000200271606445 L 19.99979972839355 9.000200271606445 L -1.358032193365943e-07 9.000200271606445 L -2.000000238418579 9.000200271606445 L -2.000000238418579 7.000200271606445 L -2.000000238418579 3.167100191116333 C -2.000000238418579 0.9611101150512695 -0.2057001292705536 -0.833599865436554 1.999799847602844 -0.833599865436554 L 6.749799728393555 -0.833599865436554 L 6.749799728393555 -1.99999988079071 L 8.749799728393555 -1.99999988079071 L 11.87459945678711 -1.99999988079071 L 13.87459945678711 -1.99999988079071 L 13.87459945678711 -0.833599865436554 L 18 -0.833599865436554 C 20.20549964904785 -0.833599865436554 21.99979972839355 0.9611101150512695 21.99979972839355 3.167100191116333 L 21.99979972839355 7.000200271606445 L 21.99979972839355 9.000200271606445 Z" stroke="none" fill="#707070"/>
-    </g>
-    <g id="Rectangle_269" data-name="Rectangle 269" transform="translate(535 -1497.104)" fill="#fff" stroke="#707070" stroke-width="1">
-      <rect width="2" height="22" stroke="none"/>
-      <rect x="0.5" y="0.5" width="1" height="21" fill="none"/>
-    </g>
-    <g id="Rectangle_270" data-name="Rectangle 270" transform="translate(539 -1495.104)" fill="#fff" stroke="#707070" stroke-width="1">
-      <rect width="2" height="19" stroke="none"/>
-      <rect x="0.5" y="0.5" width="1" height="18" fill="none"/>
-    </g>
-    <g id="Rectangle_272" data-name="Rectangle 272" transform="translate(543 -1495.104)" fill="#fff" stroke="#707070" stroke-width="1">
-      <rect width="2" height="19" stroke="none"/>
-      <rect x="0.5" y="0.5" width="1" height="18" fill="none"/>
-    </g>
-    <g id="Rectangle_271" data-name="Rectangle 271" transform="translate(547 -1497.104)" fill="#fff" stroke="#707070" stroke-width="1">
-      <rect width="2" height="22" stroke="none"/>
-      <rect x="0.5" y="0.5" width="1" height="21" fill="none"/>
-    </g>
-  </g>
-</svg>
+            <svg class="c-card__bin js-bin" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" data-id="${data.key}" data-name="${data.scientificName}" data-count="${data3}">
+
+            <path class="c-card__bin-top" d="M15,3.75 C15.5522847,3.75 16,4.19771525 16,4.75 L16,5.75 L18.25,5.75 C18.6642136,5.75 19,6.08578644 19,6.5 C19,6.91421356 18.6642136,7.25 18.25,7.25 L5.75,7.25 C5.33578644,7.25 5,6.91421356 5,6.5 C5,6.08578644 5.33578644,5.75 5.75,5.75 L8,5.75 L8,4.75 C8,4.19771525 8.44771525,3.75 9,3.75 L15,3.75 Z M14,5 L10,5 C9.72385763,5 9.5,5.22385763 9.5,5.5 C9.5,5.74545989 9.67687516,5.94960837 9.91012437,5.99194433 L10,6 L14,6 C14.2761424,6 14.5,5.77614237 14.5,5.5 C14.5,5.25454011 14.3231248,5.05039163 14.0898756,5.00805567 L14,5 Z"></path>
+            <path transform="translate(0 0)" d="M7.02498527,8.25 L16.9751371,8.25 C17.5411532,8.25 18,8.69771525 18,9.25 C18,9.2951932 17.9968602,9.34033442 17.9906022,9.3851132 L16.6878729,18.7066989 C16.6389095,19.0569074 16.4041276,19.3558931 16.0703039,19.4931212 C14.8428392,19.9977071 13.4860916,20.25 12.0000612,20.25 C10.5140229,20.25 9.1572688,19.9977044 7.92979891,19.4931132 C7.59597391,19.3558774 7.36118974,19.0568881 7.31224574,18.7066728 L6.00952014,9.3851132 C5.93304388,8.83789281 6.32568685,8.33379079 6.88651275,8.25916983 C6.93240487,8.25306363 6.97866843,8.25 7.02498527,8.25 Z"></path>
+
+        </svg>
 
 
 
 					</div>
 				</div>
 			</div>
-		</div>`;
+    </div>`;
 
   mainpage.innerHTML += html;
   checkClicks();
@@ -181,6 +177,13 @@ const save = async (id) => {
       checkbox.checked = true;
       // checkbox.querySelector(".js-show-label").setAttribute("data-checked", true)
     }
+  });
+  let deletes = document.querySelectorAll('.js-bin');
+  deletes.forEach((pdelete) => {
+    pdelete.addEventListener('click', function(){
+      deleteCard(pdelete);
+    })
+    
   });
   let shows = document.querySelectorAll('.js-show-label');
   shows.forEach((show) => {
