@@ -1,0 +1,1337 @@
+/*------------------------------------*\
+#FONTS
+\*------------------------------------*/
+
+/*------------------------------------*\
+#Variables
+\*------------------------------------*/
+
+:root {
+  /* typography */
+  --global-root-font-size: 15;
+
+  /* colors */
+  --global-color-alpha-light: #a3a0fb80;
+  --global-color-alpha: #a3a0fb;
+
+  --global-color-beta: #3b86ff;
+
+  --global-color-neutral-xxxx-light: #f0f0f7;
+  --global-color-neutral-xxx-light: #ebebf2;
+  --global-color-neutral-xx-light: #d7dae2;
+  --global-color-neutral-x-light: #bcbccb;
+  --global-color-neutral-light: #a5a4bf;
+  --global-color-neutral: #808495;
+  --global-color-neutral-dark: #4d4f5c;
+  --global-color-neutral-x-dark: #43425d;
+  --global-color-neutral-xx-dark: #3b3b53;
+
+  /* Shadows */
+  --global-box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.025), 0 2px 6px rgba(0, 0, 0, 0.05);
+  --global-box-shadow-lg: 0 0 0 1px rgba(0, 0, 0, 0.025), 0 2px 10px rgba(0, 0, 0, 0.1);
+
+  --global-input-shadow: 0 2px 3px rgba(0, 0, 0, 0.05);
+  --global-input-focus-shadow: 0 0 5px var(--global-color-alpha-light);
+
+  /* radius */
+  --global-borderRadius: calc(4rem / var(--global-root-font-size));
+
+  /* Whitespace */
+  /* 
+        global font-size = 15px
+        baseline = 5px        
+        15px = 1rem
+        5px = 1rem/3
+        This would equal to 0.3333333...rem but let the browser do the math
+    */
+  --global-baseline: calc(1rem / 3);
+  --global-whitespace-xxs: var(--global-baseline); /* = 5px */
+  --global-whitespace-xs: calc(var(--global-baseline) * 2); /* = 10px */
+  --global-whitespace-sm: calc(var(--global-baseline) * 3); /* = 15px */
+  --global-whitespace-md: calc(var(--global-baseline) * 4); /* = 20px */
+  --global-whitespace-lg: calc(var(--global-baseline) * 5); /* = 25px */
+  --global-whitespace-xl: calc(var(--global-baseline) * 6); /* = 30px */
+
+  /* transitions */
+  --global-transition-alpha: 0.2s;
+  --global-transition-beta: 1s;
+
+  --pi: 3.14159265359;
+}
+
+/*------------------------------------*\
+#GENERIC
+\*------------------------------------*/
+
+/*
+    Generic: Page
+    ---
+    Global page styles + universal box-sizing:
+*/
+
+html {
+  /* font-size: 15px; */
+  font-size: 93.75%; /* = 15px in case of 16px default font-size */
+  line-height: 1.6666667em; /* = 25px */
+  font-family: 'Source Sans Pro', Helvetica, arial, sans-serif;
+  color: var(--global-color-neutral-dark);
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--global-color-neutral-xxxx-light);
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+/*
+* Remove text-shadow in selection highlight:
+* https://twitter.com/miketaylr/status/12228805301
+*
+* Customize the background color to match your design.
+*/
+
+::-moz-selection {
+  background: var(--global-color-alpha);
+  color: white;
+  text-shadow: none;
+}
+
+::selection {
+  background: var(--global-color-alpha);
+  color: white;
+  text-shadow: none;
+}
+
+/*------------------------------------*\
+#Elements
+\*------------------------------------*/
+
+/*
+Elements: Images
+---
+Default markup for images to make them responsive
+*/
+
+img {
+  max-width: 100%;
+  vertical-align: top;
+}
+
+/*
+    Elements: typography
+    ---
+    Default markup for typographic elements
+*/
+
+h1,
+h2,
+h3 {
+  font-weight: 700;
+}
+
+h1 {
+  /* font-size: 36px; */
+  font-size: 2.4rem;
+  line-height: calc(var(--global-baseline) * 10);
+  margin: 0 0 var(--global-whitespace-md);
+}
+
+h2 {
+  /* font-size: 28px; */
+  /* font-size: 1.8666666667rem; */
+  font-size: calc(28rem / var(--global-root-font-size));
+  font-weight: normal;
+  line-height: calc(var(--global-baseline) * 8);
+  margin: 0 0 var(--global-whitespace-lg);
+}
+
+h3 {
+  /* font-size: 18px; */
+  font-size: 1.2rem;
+  line-height: calc(var(--global-baseline) * 6);
+  margin: 0 0 var(--global-whitespace-md);
+}
+
+h4,
+h5,
+h6 {
+  /* font-size: 15px; */
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: calc(var(--global-baseline) * 5);
+  margin: 0 0 var(--global-whitespace-md);
+}
+
+p,
+ol,
+ul,
+dl,
+table,
+address,
+figure {
+  margin: 0 0 var(--global-whitespace-md);
+}
+
+ul,
+ol {
+  padding-left: 24px;
+}
+
+li ul,
+li ol {
+  margin-bottom: 0;
+}
+
+blockquote {
+  font-style: normal;
+  font-size: 23px;
+  line-height: calc(var(--global-baseline) * 5);
+  margin: 0 0 var(--global-whitespace-md);
+}
+
+blockquote * {
+  font-size: inherit;
+  line-height: inherit;
+}
+
+figcaption {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  margin-top: 8px;
+}
+
+hr {
+  border: 0;
+  height: 1px;
+  background: LightGrey;
+  margin: 0 0 var(--global-whitespace-md);
+}
+
+a {
+  transition: all var(--global-transition-alpha);
+  color: var(--global-color-beta);
+  outline-color: var(--global-color-beta);
+  outline-width: medium;
+  outline-offset: 2px;
+}
+
+a:visited,
+a:active {
+  color: var(--global-color-beta);
+}
+
+a:hover,
+a:focus {
+  color: var(--global-color-alpha);
+}
+
+label,
+input {
+  display: block;
+}
+
+select {
+  width: 100%;
+}
+
+input::placeholder {
+  color: var(--global-color-neutral-light);
+}
+
+/*------------------------------------*\
+#OBJECTS
+\*------------------------------------*/
+
+/*
+    Objects: Row
+    ---
+    Creates a horizontal row that stretches the viewport and adds padding around children
+*/
+
+.o-row {
+  position: relative;
+  padding: var(--global-whitespace-lg) var(--global-whitespace-lg) var(--global-baseline);
+}
+
+/*
+    Objects: Container
+    ---
+    Creates a horizontal container that sets de global max-width
+*/
+
+.o-container {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 78em; /* 78 * 15px = 1170 */
+  width: 100%;
+}
+
+/*
+    Objects: List
+    ---
+    Small reusable object to remove default list styling from lists
+*/
+
+.o-list {
+  list-style: none;
+  padding: 0;
+}
+
+/*
+    Object: Button reset
+    ---
+    Small button reset object
+*/
+
+.o-button-reset {
+  border: none;
+  margin: 0;
+  padding: 0;
+  width: auto;
+  overflow: visible;
+  background: transparent;
+
+  /* inherit font & color from ancestor */
+  color: inherit;
+  font: inherit;
+
+  /* Normalize `line-height`. Cannot be changed from `normal` in Firefox 4+. */
+  line-height: normal;
+
+  /* Corrects font smoothing for webkit */
+  -webkit-font-smoothing: inherit;
+  -moz-osx-font-smoothing: inherit;
+
+  /* Corrects inability to style clickable `input` types in iOS */
+  -webkit-appearance: none;
+}
+
+/*
+    Object: Hide accessible
+    ---
+    Accessibly hide any element
+*/
+
+.o-hide-accessible {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+/*------------------------------------*\
+#COMPONENTS
+\*------------------------------------*/
+
+/* option input for checkboxes and radio buttons */
+
+.c-option {
+    margin-right: var(--global-whitespace-sm);
+}
+.c-option--hidden:focus + .c-custom-option,
+.c-option--hidden:active + .c-custom-option {
+    --custom-option-borderColor: var(--custom-option-focus-borderColor);
+    --custom-option-boxShadow: var(--custom-option-focus-boxShadow);
+}
+.c-option--hidden:checked + .c-custom-option .c-custom-option__symbol {
+    opacity: 1; /* Show the symbol when the invisible checkbox/radio button is checked */
+    transform: scale(1);
+}
+
+.c-option--hidden:focus + .c-custom-toggle,
+.c-option--hidden:active + .c-custom-toggle {
+    --toggle-borderColor: var(--toggle-focus-borderColor);
+    --toggle-boxShadow: var(--toggle-focus-boxShadow);
+}
+
+/* checked state */
+
+.c-option--hidden:checked + .c-custom-toggle {
+    --toggle-backgroundColor: var(--toggle-checked-backgroundColor);
+    --toggle-borderColor: var(--toggle-checked-borderColor);
+    --toggle__switch-backgroundColor: var(--toggle__switch-checked-backgroundColor);
+}
+
+.c-option--hidden:checked + .c-custom-toggle .c-custom-toggle__fake-input::after {
+    transform: translate(24px,0);
+}
+
+/* special active state */
+
+.c-option--hidden:active + .c-custom-toggle .c-custom-toggle__fake-input::after {
+    width: 28px;
+}
+
+.c-option--hidden:active:checked + .c-custom-toggle .c-custom-toggle__fake-input::after {
+    margin-left: -6px;
+}
+
+/*
+    Component: Label
+    ---
+    Class to put on all form labels
+*/
+
+.c-label {
+    margin-bottom: 0;
+    margin-top: 5px;
+    font-size: 14px;
+    padding-bottom: var(--global-whitespace-sm);    
+    line-height: calc(var(--global-baseline) * 2);
+    color: var(--label-color, var(--global-label-color));
+}
+
+.c-label--option {
+    padding-bottom: 0;
+}
+
+/*
+    Custom option
+    ---
+    Custom checkboxes & radio buttons
+*/
+
+/* Hide the actual input with the class .o-hide-accessible */
+
+.c-custom-option {
+    --custom-option-background: var(--global-input-backgroundColor);
+    --custom-option-borderRadius: var(--global-borderRadius);
+    --custom-option-borderColor: var(--global-input-borderColor);
+    --custom-option-hover-borderColor: var(--global-input-hover-borderColor);
+    --custom-option-focus-borderColor: var(--global-input-focus-borderColor);
+    --custom-option-focus-boxShadowColor: var(--global-input-focus-boxShadowColor);
+    --custom-option-focus-boxShadow: var(--global-input-focus-boxShadowSpread) var(--custom-option-focus-boxShadowColor);
+    --custom-option__symbol-fill: var(--global-color-alpha);
+    --custom-option-transition: var(--global-transitionDuration-alpha) var(--global-transitionEasing-out);
+    display: flex;
+    align-items: center;
+}
+
+.c-custom-option__fake-input {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 16px;
+    height: 16px;
+    margin-right: 8px;
+    background: var(--custom-option-background);
+    border: 1px solid var(--custom-option-borderColor);
+    transition: all var(--custom-option-transition);
+    box-shadow: var(--custom-option-boxShadow, 0);
+}
+
+.c-custom-option__fake-input--checkbox {
+    border-radius: var(--custom-option-borderRadius);
+}
+
+.c-custom-option__fake-input--radio {
+    border-radius: 100%;
+}
+
+.c-custom-option__symbol {
+    display: block;
+    opacity: 0; /* Hide the symbol initially */
+    transform: scale(.5);
+    transition: transform var(--custom-option-transition), opacity var(--custom-option-transition);
+}
+
+.c-custom-option__fake-input--checkbox .c-custom-option__symbol {
+    width: 10px;
+    height: 10px;
+    fill: var(--custom-option__symbol-fill);
+}
+
+.c-custom-option__fake-input--radio .c-custom-option__symbol {
+    background-color: var(--custom-option__symbol-fill);
+    border-radius: 100%;
+    width: 6px;
+    height: 6px;
+}
+
+/* hover state */
+
+.c-custom-option:hover {
+    --custom-option-borderColor: var(--custom-option-hover-borderColor);
+}
+
+/* focused and active state */
+
+.c-option--hidden:focus + .c-custom-option,
+.c-option--hidden:active + .c-custom-option {
+    --custom-option-borderColor: var(--custom-option-focus-borderColor);
+    --custom-option-boxShadow: var(--custom-option-focus-boxShadow);
+}
+
+/* checked state */
+
+.c-option--hidden:checked + .c-custom-option .c-custom-option__symbol {
+    opacity: 1; /* Show the symbol when the invisible checkbox/radio button is checked */
+    transform: scale(1);
+}
+
+
+/*
+    Component: Logo
+    ---
+    Website main logo
+*/
+
+.c-logo {
+  margin: 0;
+  /* font-size: 15px; */
+  font-size: 1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  /* letter-spacing: 2px; */
+  letter-spacing: 0.13333333em; /* = 2px */
+  line-height: var(--global-whitespace-md);
+  color: #fff;
+}
+
+/*
+    Component: Loader
+    ---
+    Global loader component
+*/
+
+.c-load-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  min-height: 376px;
+}
+
+.c-loader {
+  /* // all metrics should be in px otherwise calc won't work for some reason. */
+  --loader-viewbox: 50px; /* this variable should be the same as the viewbox attribute in html. */
+  --loader__circle-stroke-width: 5px;
+  --loader__circle-center: calc(var(--loader-viewbox) / 2);
+  /* // The stroke is centered so we need to take that into account.
+    // Otherwise some parts would be outside of the viewbox */
+  --loader__circle-radius: calc(var(--loader-viewbox) / 2 - var(--loader__circle-stroke-width) / 2);
+  --loader__circle-circumference: calc(var(--loader__circle-radius) * 2 * var(--pi));
+  --loader__circle-gap: 20px;
+  --loader__circle-circumference-gap: calc(var(--loader__circle-circumference) - var(--loader__circle-gap));
+  --animation-duration: 1.5s;
+  width: var(--loader-viewbox);
+  height: var(--loader-viewbox);
+  transition: opacity var(--global-transition-beta);
+}
+
+.c-loader__circle {
+  stroke: OrangeRed;
+  fill: transparent;
+  stroke-linecap: round;
+  stroke-width: var(--loader__circle-stroke-width);
+  stroke-dasharray: var(--loader__circle-gap), var(--loader__circle-circumference-gap);
+  stroke-dashoffset: 0;
+  r: var(--loader__circle-radius);
+  cx: var(--loader__circle-center);
+  cy: var(--loader__circle-center);
+  animation: rotateCircle calc(var(--animation-duration) + 0.25s) linear infinite, strokeCircle var(--animation-duration) infinite, strokeColor calc(var(--animation-duration) * 5) calc(var(--animation-duration) / 2) infinite;
+  transform-origin: center;
+}
+
+
+/*
+    Component: App
+    ---
+    Global app component
+*/
+
+.c-app {
+  --c-app__topbar-height: calc(var(--global-baseline) * 14);
+  min-height: 100vh;
+}
+
+.c-app__logo {
+  background-color: var(--global-color-neutral-xx-dark);
+  padding: 0 var(--global-whitespace-lg);
+  height: var(--c-app__topbar-height);
+  display: flex;
+  align-items: center;
+}
+
+.c-app__topbar {
+  background-color: #fff;
+  /* background-color: rgba(255,255,255,.6);
+    backdrop-filter: blur(5px); */
+  box-shadow: var(--global-box-shadow);
+  z-index: 20;
+  display: none;
+}
+
+.c-app__sidebar {
+  background-color: var(--global-color-neutral-x-dark);
+  display: none;
+}
+
+.c-app__main {
+  background-color: var(--global-color-neutral-xxxx-light);
+}
+
+@media (min-width: 62em) {
+  .c-app__topbar,
+  .c-app__sidebar {
+    display: block;
+  }
+
+  .c-app {
+    display: grid;
+    grid-template-columns: 17rem 1fr;
+    grid-template-rows:1fr;
+  }
+
+
+  .c-app__sidebar,
+  .c-app__main {
+    height: calc(100vh - var(--c-app__topbar-height));
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+}
+
+/*
+    Component: Main Navigation
+    ---
+    Main navigation component
+*/
+
+.c-main-nav__list {
+  margin-bottom: 0;
+}
+
+.c-main-nav__item {
+  margin: var(--global-baseline) ;
+  display: flex;
+  align-items: center;
+}
+
+.c-main-nav__link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #fff;
+  /* font-size: 15px; */
+  /* line-height: 20px; */
+  /* padding: 15px 25px 15px 20px; */
+  font-size: 1rem;
+  line-height: calc(var(--global-baseline) * 4);
+  padding: var(--global-whitespace-sm) var(--global-whitespace-lg) var(--global-whitespace-sm) var(--global-whitespace-md);
+  border-left: 5px solid var(--global-color-alpha);
+  transform: translateX(-5px);
+  width: calc(100% + 5px);
+  transition: transform var(--global-transition-beta);
+}
+
+.c-main-nav__link:hover {
+  /* transition: all var(--global-transition-alpha); */
+  transition-duration: var(--global-transition-alpha);
+}
+
+.c-main-nav__link,
+.c-main-nav__link:hover,
+.c-main-nav__link:visited {
+  color: #fff;
+}
+
+.c-main-nav__link:hover,
+.c-main-nav__link:focus,
+.is-selected .c-main-nav__link {
+  color: #fff;
+  background-color: var(--global-color-neutral-xx-dark);
+  /* border-color: var(--global-color-alpha); */
+  /* border-left-width: 5px; */
+  transform: none;
+}
+
+.c-main-nav__icon {
+  /* display: block; */
+  /* width: 16px;
+    height: 16px; */
+  width: 1rem; /* = 15px */
+  height: 1rem;
+  margin-right: var(--global-whitespace-xs);
+  fill: var(--global-color-neutral-light);
+  transition: fill var(--global-transition-alpha);
+}
+
+.c-main-nav__link:hover .c-main-nav__icon,
+.c-main-nav__link:focus .c-main-nav__icon,
+.is-selected .c-main-nav__icon {
+  fill: var(--global-color-alpha);
+}
+
+/*
+    Component: topbar
+*/
+
+.slide-fade li {
+  transition: all 0.4s ease-out;
+  opacity: 0;
+}
+.slide-fade li.show {
+  opacity: 1;
+}
+.c-topbar {
+  padding: 0 var(--global-whitespace-lg);
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+/*
+    Component: search
+*/
+
+.c-search {
+  display: flex;
+  align-items: center;
+  flex-direction: row-reverse;
+  width: 100%;
+}
+
+.c-search__input {
+  all: unset;
+  width: 100%;
+  line-height: calc(var(--global-baseline) * 6);
+}
+
+.c-search__button {
+  display: block;
+  background-color: transparent;
+  margin-right: var(--global-whitespace-sm);
+  /* border: none; */
+}
+
+.c-search__icon {
+  display: block;
+  /* width: 16px;
+    height: 16px; */
+  width: 1rem;
+  height: 1rem;
+  fill: var(--global-color-neutral-x-light);
+}
+
+/*
+    Component: user
+*/
+
+.c-user {
+  display: flex;
+  align-items: center;
+}
+
+.c-user__dropdown-button {
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  line-height: var(--global-whitespace-md);
+  outline: none;
+  color: var(--global-color-neutral);
+}
+
+.c-user__dropdown-button:focus {
+  color: var(--global-color-neutral-x-dark);
+}
+
+.c-user__dropdown-icon {
+  display: block;
+  /* width: 11px;
+    height: 16px; */
+  width: calc(11rem / var(--global-root-font-size));
+  height: calc(16rem / var(--global-root-font-size));
+  fill: var(--global-color-neutral-x-light);
+  margin-left: calc(var(--global-baseline) * 2);
+}
+
+.c-user__avatar {
+  /* width: 40px;
+    height: 40px; */
+  width: calc(var(--global-baseline) * 8);
+  height: calc(var(--global-baseline) * 8);
+  background-color: var(--global-color-neutral-xxx-light);
+  border-radius: 100%;
+  flex-shrink: 0;
+  margin-left: calc(var(--global-baseline) * 2);
+}
+
+/*
+    Component: Quick nav
+*/
+
+.c-quick-nav {
+  margin-right: calc(var(--global-baseline) * 5);
+  padding-right: calc(var(--global-baseline) * 5);
+  border-right: 1px solid var(--global-color-neutral-xxx-light);
+  height: calc(var(--global-baseline) * 6);
+  display: flex;
+  align-items: center;
+}
+
+.c-quick-nav__list {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0;
+}
+
+.c-quick-nav__item + .c-quick-nav__item {
+  margin-left: var(--global-whitespace-sm);
+}
+
+.c-quick-nav__action {
+  transition: color var(--global-transition-alpha);
+  cursor: pointer;
+  outline: none;
+}
+
+.c-quick-nav__action--has-notifications::after {
+  content: '';
+  display: block;
+  width: calc(12rem / var(--global-root-font-size));
+  height: calc(12rem / var(--global-root-font-size));
+  border-radius: 100%;
+  border: 2px solid white;
+  background-color: #ffc06a;
+  position: absolute;
+  top: -5px;
+  right: -3px;
+  top: calc(-5rem / var(--global-root-font-size));
+  right: calc(-3rem / var(--global-root-font-size));
+}
+
+.c-quick-nav__action,
+.c-quick-nav__action:visited,
+.c-quick-nav__action:active {
+  display: block;
+  color: var(--global-color-neutral-x-light);
+}
+
+.c-quick-nav__action:hover,
+.c-quick-nav__action:focus {
+  color: var(--global-color-neutral-light);
+}
+
+.c-quick-nav__icon {
+  display: block;
+  /* width: 16px;
+    height: 16px; */
+  width: 1rem;
+  height: 1rem;
+  fill: currentColor;
+  transition: fill var(--global-transition-alpha);
+}
+
+/*
+    Component: Dropdown
+*/
+
+.c-dropdown-container {
+  position: relative;
+}
+
+.c-dropdown-toggle.is-open + .c-dropdown {
+  opacity: 1;
+  pointer-events: auto;
+  transform: none;
+}
+
+.c-dropdown-toggle.is-open + .c-dropdown {
+  opacity: 1;
+}
+
+.c-dropdown {
+  /* display: none; */
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
+  top: 100%;
+  margin-top: calc(var(--global-baseline) * 3);
+  transform: translateY(5px);
+  width: 10rem;
+  background-color: white;
+  box-shadow: var(--global-box-shadow-lg);
+  transition: all var(--global-transition-alpha);
+}
+
+.c-dropdown--right {
+  right: 0;
+}
+
+.c-dropdown--notifications {
+  width: 30rem;
+  margin-right: calc(var(--global-baseline) * -5);
+}
+
+.c-dropdown__header {
+  border-bottom: 1px solid var(--global-color-neutral-xxxx-light);
+  padding: var(--global-whitespace-md);
+}
+
+.c-dropdown__footer {
+  border-top: 1px solid var(--global-color-neutral-xxxx-light);
+}
+
+.c-dropdown__title {
+  margin-bottom: 0;
+}
+
+.c-dropdown__body {
+  padding: calc(var(--global-baseline) * 2) var(--global-whitespace-md);
+}
+
+.c-dropdown__body--lg {
+  padding: var(--global-whitespace-md) var(--global-whitespace-lg);
+}
+
+.c-dropdown__list {
+  margin: 0;
+}
+
+.c-dropdown__link,
+.c-dropdown__link:visited,
+.c-dropdown__link:active {
+  display: block;
+  padding: var(--global-baseline) 0;
+  text-decoration: none;
+  color: var(--global-color-neutral);
+  /* font-size: 13px; */
+  font-size: 0.8666666667;
+}
+
+.c-dropdown__link:hover,
+.c-dropdown__link:focus {
+  color: var(--global-color-neutral-x-dark);
+}
+
+.c-dropdown__more-link {
+  display: block;
+  text-align: center;
+  text-decoration: none;
+  padding: var(--global-whitespace-md);
+}
+
+/*
+    Component: Dashboard
+    ---
+    Dashboard component with CSS grid
+*/
+
+.c-dashboard {
+  display: grid;
+  grid-gap: var(--global-whitespace-lg);
+  margin-bottom: var(--global-whitespace-md);
+}
+
+.c-dashboard__item {
+  box-shadow: var(--global-box-shadow);
+  background-color: #fff;
+}
+
+@media screen and (min-width: 62em) {
+  .c-dashboard {
+    grid-template-columns: repeat(12, 1fr);
+  }
+
+  .c-dashboard__item {
+    grid-column: 1 / -1;
+  }
+}
+
+/*
+    Component: Card
+*/
+
+.c-card {
+  width: 100%;
+  height: 100%;
+}
+
+.c-card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  /* margin-bottom: var(--global-whitespace-md); */
+}
+
+.c-card__title {
+  margin-bottom: 0;
+  /* font-size: 18px;
+    line-height: 25px; */
+  font-size: 1.2rem;
+  line-height: calc(var(--global-baseline) * 5);
+}
+
+.c-card__header,
+.c-card__body {
+  padding: var(--global-whitespace-md);
+}
+
+.c-card__header {
+  padding-bottom: 0;
+}
+
+.c-card__header > *:last-child,
+.c-card__body > *:last-child {
+  margin-bottom: 0;
+}
+
+/*
+    Component: Input
+    ---
+    Class to put on all input="text" like form inputs
+*/
+
+.c-input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 100%;
+  border: 1px solid var(--global-color-neutral-xx-light);
+  border-radius: var(--global-borderRadius);
+  background-color: #fff;
+  color: var(--global-color-neutral-xxxx-dark);
+  font-family: inherit;
+  /* font-size: 13px;
+    line-height: 20px;
+    padding: 4px 10px; */
+  font-size: 0.8666666667rem;
+  line-height: calc(var(--global-baseline) * 4);
+  padding: calc(var(--global-whitespace-xxs) - 1px) var(--global-whitespace-xs);
+  outline: none;
+  box-shadow: var(--inset-shadow);
+  transition: border var(--global-transition-alpha);
+  box-shadow: var(--global-input-shadow);
+}
+
+.c-input:hover {
+  border-color: var(--global-color-neutral-x-light);
+}
+
+.c-input:focus,
+.c-input:active {
+  border-color: var(--global-color-alpha-light);
+  box-shadow: var(--global-input-focus-shadow);
+}
+
+/*
+    Component: Custom Select
+    ---
+    Custom select dropdown
+*/
+
+.c-custom-select {
+  display: block;
+  position: relative;
+}
+
+.c-custom-select__input {
+  padding-right: calc(var(--global-baseline) * 5);
+}
+
+.c-custom-select__symbol {
+  width: calc(11rem / var(--global-root-font-size));
+  height: calc(16rem / var(--global-root-font-size));
+  position: absolute;
+  top: 50%;
+  /* transform: translateY(calc(-8rem / var(--global-root-font-size))); */
+  transform: translateY(-50%);
+  right: var(--global-whitespace-xs);
+  pointer-events: none;
+  fill: var(--global-color-neutral-light);
+}
+
+/*
+    Donut Chart
+*/
+
+.c-donut {
+  /* all metrics should be in px otherwise calc won't work for some reason. */
+  --donut-viewbox: 100px; /* this variable should be the same as the viewbox attribute in html. */
+  --donut__circle-stroke-width: 50px;
+  --donut__circle-center: calc(var(--donut-viewbox) / 2);
+  /* The stroke is centered so we need to take that into account.
+    Otherwise some parts would be outside of the viewbox */
+  --donut__circle-radius: calc(var(--donut-viewbox) / 2 - var(--donut__circle-stroke-width) / 2);
+  --donut__circle-circumference: calc(var(--donut__circle-radius) * 2 * var(--pi));
+  --donut__circle-gap: 20px;
+  --donut__circle-circumference-gap: calc(var(--donut__circle-circumference) - var(--donut__circle-gap));
+  /* width: var(--donut-viewbox);
+    height: var(--donut-viewbox); */
+  margin: 0 auto;
+  max-width: 150px;
+  display: block;
+  transform: rotate(-90deg);
+  transform-origin: center;
+}
+
+.c-donut__circle {
+  r: var(--donut__circle-radius);
+  cx: var(--donut__circle-center);
+  cy: var(--donut__circle-center);
+  fill: none;
+  stroke: var(--global-color-neutral-xxx-light);
+  stroke-width: var(--donut__circle-stroke-width);
+  stroke-dasharray: var(--donut__circle-circumference);
+  stroke-dashoffset: 0;
+  transition: stroke-dashoffset 0.3s ease;
+  transform-origin: center;
+}
+
+/*------------------------------------*\
+#UTILITIES
+\*------------------------------------*/
+
+/*
+    Utilities: color
+    ---
+    Utility classes to put specific colors onto elements
+*/
+
+.u-color-neutral {
+  color: var(--global-color-neutral);
+}
+
+.u-color-neutral-dark {
+  color: var(--global-color-neutral-dark);
+}
+
+/*
+    Utilities: spacing
+    ---
+    Utility classes to put specific margins and paddings onto elements
+*/
+
+.u-pt-clear {
+  padding-top: 0 !important;
+}
+
+.u-mb-clear {
+  margin-bottom: 0 !important;
+}
+
+.u-mb-xxs {
+  margin-bottom: var(--global-whitespace-xxs) !important;
+}
+
+.u-mb-xs {
+  margin-bottom: var(--global-whitespace-xs) !important;
+}
+
+.u-mb-sm {
+  margin-bottom: var(--global-whitespace-sm) !important;
+}
+
+.u-mb-md {
+  margin-bottom: var(--global-whitespace-md) !important;
+}
+
+.u-mb-lg {
+  margin-bottom: var(--global-whitespace-lg) !important;
+}
+
+.u-mb-xl {
+  margin-bottom: var(--global-whitespace-xl) !important;
+}
+
+/*
+    Utilities: max-width
+    ---
+    Utility classes to put specific max widths onto elements
+*/
+
+.u-max-width-xs {
+  max-width: 27em !important;
+}
+
+.u-max-width-sm {
+  max-width: 39em !important;
+}
+
+.u-max-width-md {
+  max-width: 50em !important;
+}
+
+.u-max-width-lg {
+  max-width: 63.5em !important;
+}
+
+.u-max-width-none {
+  max-width: none !important;
+}
+
+/*
+    Utilities: align
+    ---
+    Utility classes align text or components
+*/
+
+.u-align-text-center {
+  text-align: center;
+}
+
+.u-align-center {
+  margin: 0 auto;
+}
+
+/*
+    Utilities: text
+    Utility classes to create smaller or bigger test
+*/
+
+.u-text-xs {
+  font-size: calc(11rem / var(--global-root-font-size));
+}
+
+.u-text-sm {
+  font-size: calc(13rem / var(--global-root-font-size));
+  line-height: calc(var(--global-baseline) * 4);
+}
+
+/*
+    Utilities: span
+    Utility classes to span grid items across the x and y axis
+*/
+
+/* x: horizontal */
+
+@media (min-width: 62em) {
+  .u-x-span-3-bp3 {
+    grid-column: span 3;
+  }
+
+  .u-x-span-4-bp3 {
+    grid-column: span 4;
+  }
+
+  .u-x-span-6-bp3 {
+    grid-column: span 6;
+  }
+
+  .u-x-span-8-bp3 {
+    grid-column: span 8;
+  }
+
+  .u-x-span-9-bp3 {
+    grid-column: span 9;
+  }
+}
+
+/* y: vertical */
+
+@media (min-width: 62em) {
+  .u-y-span-2-bp3 {
+    grid-row: span 2;
+  }
+}
+
+/*------------------------------------*\
+#MEDIA
+\*------------------------------------*/
+
+/*
+    Media Queries
+    ---
+    EXAMPLE Media Queries for Responsive Design.
+    These examples override the primary ('mobile first') styles.
+    USE THEM INLINE!
+*/
+
+/* Extra small devices (portrait phones, less than 576px)
+No media query since this is the default in mobile first design
+*/
+
+/* Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) {}
+*/
+
+/* Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {}
+*/
+
+/* Large devices (landscape tablets, desktops, 62em and up)
+@media (min-width: 62em) {}
+*/
+
+/* Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {}
+*/
+
+/*
+    Print styles.
+    ---
+    Inlined to avoid the additional HTTP request:
+    http://www.phpied.com/delay-loading-your-print-css/
+*/
+
+@media print {
+  *,
+  *:before,
+  *:after {
+    background: transparent !important;
+    color: #000 !important;
+    /* Black prints faster:
+        http://www.sanbeiji.com/archives/953 */
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+  a,
+  a:visited {
+    text-decoration: underline;
+  }
+  a[href]:after {
+    content: ' (' attr(href) ')';
+  }
+  abbr[title]:after {
+    content: ' (' attr(title) ')';
+  }
+  /*
+    * Don't show links that are fragment identifiers,
+    * or use the `javascript:` pseudo protocol
+    */
+  a[href^='#']:after,
+  a[href^='javascript:']:after {
+    content: '';
+  }
+  pre {
+    white-space: pre-wrap !important;
+  }
+  pre,
+  blockquote {
+    border: 1px solid #999;
+    page-break-inside: avoid;
+  }
+  /*
+    * Printing Tables:
+    * http://css-discuss.incutio.com/wiki/Printing_Tables
+    */
+  thead {
+    display: table-header-group;
+  }
+  tr,
+  img {
+    page-break-inside: avoid;
+  }
+  p,
+  h2,
+  h3 {
+    orphans: 3;
+    widows: 3;
+  }
+  h2,
+  h3 {
+    page-break-after: avoid;
+  }
+}
