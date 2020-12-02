@@ -339,7 +339,7 @@ input::placeholder {
 }
 .c-option--hidden:focus + .c-custom-option,
 .c-option--hidden:active + .c-custom-option {
-    --custom-option-borderColor: var(--custom-option-focus-borderColor);
+    --custom-option-borderColor: black;
     --custom-option-boxShadow: var(--custom-option-focus-boxShadow);
 }
 .c-option--hidden:checked + .c-custom-option .c-custom-option__symbol {
@@ -424,7 +424,7 @@ input::placeholder {
     height: 16px;
     margin-right: 8px;
     background: var(--custom-option-background);
-    border: 1px solid var(--custom-option-borderColor);
+    border: 1px solid black;
     transition: all var(--custom-option-transition);
     box-shadow: var(--custom-option-boxShadow, 0);
 }
@@ -447,7 +447,7 @@ input::placeholder {
 .c-custom-option__fake-input--checkbox .c-custom-option__symbol {
     width: 10px;
     height: 10px;
-    fill: var(--custom-option__symbol-fill);
+    fill: red;
 }
 
 .c-custom-option__fake-input--radio .c-custom-option__symbol {
@@ -590,13 +590,13 @@ input::placeholder {
   .c-app {
     display: grid;
     grid-template-columns: 17rem 1fr;
-    grid-template-rows:1fr;
+    grid-template-rows:  1fr;
   }
 
 
   .c-app__sidebar,
   .c-app__main {
-    height: calc(100vh - var(--c-app__topbar-height));
+    height: calc(100vh);
     overflow-y: auto;
     overflow-x: hidden;
   }
@@ -607,6 +607,23 @@ input::placeholder {
     ---
     Main navigation component
 */
+.c-main-nav--previous{
+    padding-bottom: 20px;
+    border-bottom: 1px solid white;
+
+}
+/* .c-main-nav--selecting{
+    padding: 60px 0px 0px 0px;
+    overflow: hidden;
+}
+.KINGDOM + .c-main-nav--selecting{
+    padding: 120px 0px 0px 0px;
+    overflow: hidden;
+}
+.KINGDOM + .c-main-nav--selecting{
+    padding: 120px 0px 0px 0px;
+    overflow: hidden;
+} */
 
 .c-main-nav__list {
   margin-bottom: 0;
@@ -617,6 +634,10 @@ input::placeholder {
   display: flex;
   align-items: center;
 }
+.c-main-nav__item--back {
+    border-bottom: 1px solid white;
+}
+
 
 .c-main-nav__link {
   display: flex;
@@ -633,6 +654,28 @@ input::placeholder {
   transform: translateX(-5px);
   width: calc(100% + 5px);
   transition: transform var(--global-transition-beta);
+}
+.c-main-nav__item--back > .c-main-nav__link {
+    border: none;
+}
+.KINGDOM {
+    margin-left: 15px;
+}
+
+.PHYLUM {
+    margin-left: 25px;
+}
+.CLASS {
+    margin-left: 35px;
+}
+.ORDER {
+    margin-left: 45px;
+}
+.FAMILY {
+    margin-left: 55px;
+}
+.GENUS {
+    margin-left: 65px;
 }
 
 .c-main-nav__link:hover {
@@ -959,12 +1002,6 @@ input::placeholder {
   height: 100%;
 }
 
-.c-card__header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  /* margin-bottom: var(--global-whitespace-md); */
-}
 
 .c-card__title {
   margin-bottom: 0;
@@ -980,7 +1017,8 @@ input::placeholder {
 }
 
 .c-card__header {
-  padding-bottom: 0;
+  border-bottom: 5px solid  var(--global-color-neutral-xxxx-light);
+  height: 80px;
 }
 
 .c-card__header > *:last-child,

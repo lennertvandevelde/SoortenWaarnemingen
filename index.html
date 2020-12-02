@@ -12,18 +12,30 @@
   <body>
     <div class="c-app">
       <div class="c-app__sidebar">
-        <nav class="c-main-nav">
+        <nav class="c-main-nav c-main-nav--previous js-back-nav">
+          <ul class="o-list c-main-nav__list js-back-list">
+            <li class="c-main-nav__item c-main-nav__item--back js-home"  >
+              <span class="c-main-nav__link" >
+                Koninkrijken
+              </span>
+
+      
+            </li>
+          </ul>
+        </nav>
+        <nav class="c-main-nav c-main-nav--selecting">
           <ul class="o-list c-main-nav__list js-list"></ul>
         </nav>
       </div>
+      
       <div class="c-app__main">
         <div class="o-row">
           <div class="o-container">
             <h2>Overview</h2>
             <div class="c-dashboard js-main">
-              <div class="c-dashboard__item">
+              <div class="c-dashboard__item c-dashboard__item--fixed">
                 <div class="c-card">
-                  <canvas class="js-bar" style="height: 585px;" ></canvas>
+                  <canvas class="js-bar" style="height: 400px;" ></canvas>
                   <!-- <div class="c-card__header">
                     <h2 class="c-card__title">Bezoekers per dag</h2>
                   </div>
