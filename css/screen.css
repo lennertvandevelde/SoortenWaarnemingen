@@ -331,7 +331,27 @@ input::placeholder {
 /*------------------------------------*\
 #COMPONENTS
 \*------------------------------------*/
+/* addbutton */
 
+
+.c-add {
+  transition: all 0.75s ease-in;
+}
+.c-add__hor,
+.c-add__ver{
+  transition: all 0.75s ease-in;
+}
+.c-clicked {
+  transform: rotate(90deg);
+  transform-origin: center center;
+
+}
+.c-clicked > .c-add__ver,
+.c-clicked > .c-add__hor{
+  transform: translate(32px, 32px)  scale(0.0) ;
+
+
+}
 /* option input for checkboxes and radio buttons */
 
 .c-option {
@@ -1032,7 +1052,10 @@ input::placeholder {
 .c-card__body > *:last-child {
   margin-bottom: 0;
 }
-
+.c-card__buttons{
+  display: flex;
+  justify-content: space-between;
+}
 /*
     Component: Input
     ---
