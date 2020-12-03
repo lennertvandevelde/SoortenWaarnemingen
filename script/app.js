@@ -6,12 +6,18 @@ let values = [];
 let first = true;
 let saves = [];
 const deleteCard = function(element){
-  console.log("delete");
-  plabels.splice(plabels.indexOf(element.getAttribute('data-name')), 1);
+  console.log(plabels.indexOf(element.getAttribute('data-name')));
+  if(plabels.indexOf(element.getAttribute('data-name')) != -1){
+    plabels.splice(plabels.indexOf(element.getAttribute('data-name')), 1);
   values.splice(values.indexOf(element.getAttribute('data-count')), 1);
+  }
+  
   saves.splice(saves.indexOf(element.getAttribute('data-id')), 1);
   element.classList.add("c-card__bin--clicked");
   let card = document.querySelector(`.js-${element.getAttribute('data-id')}`)
+  setTimeout(function () {
+    card.classList.add("c-dashboard__item--deleted");
+  }, 500);
   setTimeout(function () {
     card.remove();
   }, 1200);
@@ -22,6 +28,7 @@ const checkClicks = function () {
   let adds = document.querySelectorAll('.js-add');
   adds.forEach((add) => {
     if (saves.includes(add.getAttribute('data-id'))) {
+      console.log("AAA")
       add.classList.add('c-clicked');
       setTimeout(function () {
         add.classList.add('o-hide-accessible');
