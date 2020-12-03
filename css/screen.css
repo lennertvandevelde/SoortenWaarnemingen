@@ -12,19 +12,19 @@
 
   /* colors */
   --global-color-alpha-light: #a3a0fb80;
-  --global-color-alpha: #a3a0fb;
+  --global-color-alpha: #263369;
 
-  --global-color-beta: #3b86ff;
+  --global-color-beta: #fec760;
 
-  --global-color-neutral-xxxx-light: #f0f0f7;
-  --global-color-neutral-xxx-light: #ebebf2;
-  --global-color-neutral-xx-light: #d7dae2;
+  --global-color-neutral-xxxx-light: #f2f4ff;
+  --global-color-neutral-xxx-light: #98a4d9;
+  --global-color-neutral-xx-light: #6b7499;
   --global-color-neutral-x-light: #bcbccb;
   --global-color-neutral-light: #a5a4bf;
   --global-color-neutral: #808495;
   --global-color-neutral-dark: #4d4f5c;
-  --global-color-neutral-x-dark: #43425d;
-  --global-color-neutral-xx-dark: #3b3b53;
+  --global-color-neutral-x-dark: #474d66;
+  --global-color-neutral-xx-dark: #363a4d;
 
   /* Shadows */
   --global-box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.025), 0 2px 6px rgba(0, 0, 0, 0.05);
@@ -79,6 +79,9 @@ html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: var(--global-color-neutral-xxxx-light);
+  color: var(--global-color-alpha);
+  scroll-behavior: smooth;
+
 }
 
 *,
@@ -152,6 +155,7 @@ h2 {
 h3 {
   /* font-size: 18px; */
   font-size: 1.2rem;
+  font-weight: lighter;
   line-height: calc(var(--global-baseline) * 6);
   margin: 0 0 var(--global-whitespace-md);
 }
@@ -355,7 +359,7 @@ input::placeholder {
 }
 .c-option--hidden:focus + .c-custom-option,
 .c-option--hidden:active + .c-custom-option {
-  --custom-option-borderColor: black;
+  --custom-option-borderColor: var(--global-color-neutral-xx-light);
   --custom-option-boxShadow: var(--custom-option-focus-boxShadow);
 }
 .c-option--hidden:checked + .c-custom-option .c-custom-option__symbol {
@@ -441,7 +445,7 @@ input::placeholder {
   height: 16px;
   margin-right: 8px;
   background: var(--custom-option-background);
-  border: 1px solid black;
+  border: 1px solid var(--global-color-neutral-xx-light);
   transition: all var(--custom-option-transition);
   box-shadow: var(--custom-option-boxShadow, 0);
 }
@@ -464,7 +468,7 @@ input::placeholder {
 .c-custom-option__fake-input--checkbox .c-custom-option__symbol {
   width: 10px;
   height: 10px;
-  fill: red;
+  fill: var(--global-color-alpha);
 }
 
 .c-custom-option__fake-input--radio .c-custom-option__symbol {
@@ -522,7 +526,6 @@ input::placeholder {
 .c-app {
   --c-app__topbar-height: calc(var(--global-baseline) * 14);
   min-height: 80vh;
-
 }
 
 .c-app__logo {
@@ -550,13 +553,40 @@ input::placeholder {
 
 .c-app__main {
   background-color: var(--global-color-neutral-xxxx-light);
-
+  scroll-behavior: smooth;
+}
+.c-app__upbutton {
+  position: fixed;
+  left: 87%;
+  top: 84%;
+  height: 40px;
+  width: 40px;
+  background-color: white;
+  border-radius: 100%;
+  padding: 5px;
+  border: 1px solid var(--global-color-neutral-xx-dark);
+  cursor: pointer;
+}
+.c-app__upbutton--symbol {
+  fill: var(--global-color-neutral-xx-dark);
 }
 
 @media (min-width: 62em) {
   .c-app__topbar,
   .c-app__sidebar {
     display: block;
+  }
+  .c-app__upbutton {
+    position: fixed;
+    left: 90%;
+    top: 84%;
+    height: 80px;
+    width: 80px;
+    background-color: white;
+    border-radius: 100%;
+    padding: 5px;
+    border: 1px solid var(--global-color-neutral-xx-dark);
+    cursor: pointer;
   }
 
   .c-app {
@@ -587,8 +617,8 @@ input::placeholder {
     Main navigation component
 */
 .c-main-nav--previous {
-  padding-bottom: 20px;
-  border-bottom: 1px solid white;
+  padding-bottom: 15px;
+  border-bottom: 10px solid var(--global-color-neutral-xxxx-light);
 }
 /* .c-main-nav--selecting{
     padding: 60px 0px 0px 0px;
@@ -628,7 +658,7 @@ input::placeholder {
   font-size: 1rem;
   line-height: calc(var(--global-baseline) * 4);
   padding: var(--global-whitespace-sm) var(--global-whitespace-lg) var(--global-whitespace-sm) var(--global-whitespace-md);
-  border-left: 5px solid var(--global-color-alpha);
+  border-left: 5px solid var(--global-color-neutral-xxx-light);
   transform: translateX(-5px);
   width: calc(100% + 5px);
   transition: transform var(--global-transition-beta);
@@ -714,237 +744,6 @@ input::placeholder {
 }
 
 /*
-    Component: search
-*/
-
-.c-search {
-  display: flex;
-  align-items: center;
-  flex-direction: row-reverse;
-  width: 100%;
-}
-
-.c-search__input {
-  all: unset;
-  width: 100%;
-  line-height: calc(var(--global-baseline) * 6);
-}
-
-.c-search__button {
-  display: block;
-  background-color: transparent;
-  margin-right: var(--global-whitespace-sm);
-  /* border: none; */
-}
-
-.c-search__icon {
-  display: block;
-  /* width: 16px;
-    height: 16px; */
-  width: 1rem;
-  height: 1rem;
-  fill: var(--global-color-neutral-x-light);
-}
-
-/*
-    Component: user
-*/
-
-.c-user {
-  display: flex;
-  align-items: center;
-}
-
-.c-user__dropdown-button {
-  display: flex;
-  align-items: center;
-  white-space: nowrap;
-  line-height: var(--global-whitespace-md);
-  outline: none;
-  color: var(--global-color-neutral);
-}
-
-.c-user__dropdown-button:focus {
-  color: var(--global-color-neutral-x-dark);
-}
-
-.c-user__dropdown-icon {
-  display: block;
-  /* width: 11px;
-    height: 16px; */
-  width: calc(11rem / var(--global-root-font-size));
-  height: calc(16rem / var(--global-root-font-size));
-  fill: var(--global-color-neutral-x-light);
-  margin-left: calc(var(--global-baseline) * 2);
-}
-
-.c-user__avatar {
-  /* width: 40px;
-    height: 40px; */
-  width: calc(var(--global-baseline) * 8);
-  height: calc(var(--global-baseline) * 8);
-  background-color: var(--global-color-neutral-xxx-light);
-  border-radius: 100%;
-  flex-shrink: 0;
-  margin-left: calc(var(--global-baseline) * 2);
-}
-
-/*
-    Component: Quick nav
-*/
-
-.c-quick-nav {
-  margin-right: calc(var(--global-baseline) * 5);
-  padding-right: calc(var(--global-baseline) * 5);
-  border-right: 1px solid var(--global-color-neutral-xxx-light);
-  height: calc(var(--global-baseline) * 6);
-  display: flex;
-  align-items: center;
-}
-
-.c-quick-nav__list {
-  display: flex;
-  align-items: center;
-  margin-bottom: 0;
-}
-
-.c-quick-nav__item + .c-quick-nav__item {
-  margin-left: var(--global-whitespace-sm);
-}
-
-.c-quick-nav__action {
-  transition: color var(--global-transition-alpha);
-  cursor: pointer;
-  outline: none;
-}
-
-.c-quick-nav__action--has-notifications::after {
-  content: '';
-  display: block;
-  width: calc(12rem / var(--global-root-font-size));
-  height: calc(12rem / var(--global-root-font-size));
-  border-radius: 100%;
-  border: 2px solid white;
-  background-color: #ffc06a;
-  position: absolute;
-  top: -5px;
-  right: -3px;
-  top: calc(-5rem / var(--global-root-font-size));
-  right: calc(-3rem / var(--global-root-font-size));
-}
-
-.c-quick-nav__action,
-.c-quick-nav__action:visited,
-.c-quick-nav__action:active {
-  display: block;
-  color: var(--global-color-neutral-x-light);
-}
-
-.c-quick-nav__action:hover,
-.c-quick-nav__action:focus {
-  color: var(--global-color-neutral-light);
-}
-
-.c-quick-nav__icon {
-  display: block;
-  /* width: 16px;
-    height: 16px; */
-  width: 1rem;
-  height: 1rem;
-  fill: currentColor;
-  transition: fill var(--global-transition-alpha);
-}
-
-/*
-    Component: Dropdown
-*/
-
-.c-dropdown-container {
-  position: relative;
-}
-
-.c-dropdown-toggle.is-open + .c-dropdown {
-  opacity: 1;
-  pointer-events: auto;
-  transform: none;
-}
-
-.c-dropdown-toggle.is-open + .c-dropdown {
-  opacity: 1;
-}
-
-.c-dropdown {
-  /* display: none; */
-  opacity: 0;
-  pointer-events: none;
-  position: absolute;
-  top: 100%;
-  margin-top: calc(var(--global-baseline) * 3);
-  transform: translateY(5px);
-  width: 10rem;
-  background-color: white;
-  box-shadow: var(--global-box-shadow-lg);
-  transition: all var(--global-transition-alpha);
-}
-
-.c-dropdown--right {
-  right: 0;
-}
-
-.c-dropdown--notifications {
-  width: 30rem;
-  margin-right: calc(var(--global-baseline) * -5);
-}
-
-.c-dropdown__header {
-  border-bottom: 1px solid var(--global-color-neutral-xxxx-light);
-  padding: var(--global-whitespace-md);
-}
-
-.c-dropdown__footer {
-  border-top: 1px solid var(--global-color-neutral-xxxx-light);
-}
-
-.c-dropdown__title {
-  margin-bottom: 0;
-}
-
-.c-dropdown__body {
-  padding: calc(var(--global-baseline) * 2) var(--global-whitespace-md);
-}
-
-.c-dropdown__body--lg {
-  padding: var(--global-whitespace-md) var(--global-whitespace-lg);
-}
-
-.c-dropdown__list {
-  margin: 0;
-}
-
-.c-dropdown__link,
-.c-dropdown__link:visited,
-.c-dropdown__link:active {
-  display: block;
-  padding: var(--global-baseline) 0;
-  text-decoration: none;
-  color: var(--global-color-neutral);
-  /* font-size: 13px; */
-  font-size: 0.8666666667;
-}
-
-.c-dropdown__link:hover,
-.c-dropdown__link:focus {
-  color: var(--global-color-neutral-x-dark);
-}
-
-.c-dropdown__more-link {
-  display: block;
-  text-align: center;
-  text-decoration: none;
-  padding: var(--global-whitespace-md);
-}
-
-/*
     Component: Dashboard
     ---
     Dashboard component with CSS grid
@@ -960,7 +759,7 @@ input::placeholder {
   background-color: #fff;
   border-radius: 15px;
   transition: all 1s;
-  max-width: 80vw;
+  max-width: 85vw;
 }
 
 .c-dashboard__item--deleted {
@@ -984,14 +783,7 @@ input::placeholder {
 .c-card {
   width: 100%;
   height: 100%;
-}
-
-.c-card__title {
-  margin-bottom: 0;
-  /* font-size: 18px;
-    line-height: 25px; */
-  font-size: 1.2rem;
-  line-height: calc(var(--global-baseline) * 5);
+  border-radius: 15px;
 }
 
 .c-card__header,
@@ -1002,6 +794,20 @@ input::placeholder {
 .c-card__header {
   border-bottom: 10px solid var(--global-color-neutral-xxxx-light);
   min-height: 105px;
+  background-color: var(--global-color-neutral-x-dark);
+  border-radius: 15px 15px 0 0;
+}
+
+.c-card__title {
+  margin-bottom: 0;
+  /* font-size: 18px;
+    line-height: 25px; */
+  font-size: 1.2rem;
+  line-height: calc(var(--global-baseline) * 5);
+  color: #fff;
+}
+.c-card__subtitle {
+  color: #fff;
 }
 
 .c-card__header > *:last-child,
@@ -1015,6 +821,7 @@ input::placeholder {
 }
 .c-card__bin {
   height: 30px;
+  fill: #662730;
   cursor: pointer;
 }
 
@@ -1031,6 +838,7 @@ input::placeholder {
   width: 100%;
   height: 25vh;
   object-fit: cover;
+  border-radius: 15px;
 }
 /*
     Component: Input

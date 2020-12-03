@@ -5,6 +5,17 @@ let plabels = [];
 let values = [];
 let first = true;
 let saves = [];
+let chart;
+const addScrollButton = function(){
+  let main = document.querySelector('.js-appmain');
+  let app = document.querySelector('.js-app');
+
+  document.querySelector('.js-up').addEventListener('click', function(){
+    main.scrollTo(0, 0)
+    window.scrollTo(0, 0)
+    console.log(window.scrollX)
+  })
+}
 const deleteCard = function(element){
   console.log(plabels.indexOf(element.getAttribute('data-name')));
   if(plabels.indexOf(element.getAttribute('data-name')) != -1){
@@ -20,9 +31,10 @@ const deleteCard = function(element){
   }, 500);
   setTimeout(function () {
     card.remove();
+    updateChart()
+    checkClicks()
   }, 1200);
-  updateChart()
-  checkClicks()
+  
 }
 const checkClicks = function () {
   let adds = document.querySelectorAll('.js-add');
@@ -75,11 +87,18 @@ const showprevious = function (element) {
 };
 const updateChart = function () {
   console.log(values);
+  console.log(chart)
+  chart.data.labels = plabels;
+  chart.data.datasets.data = values;
+  chart.update();
+
+};
+const initChart = function() {
   let ctx = graph.getContext('2d');
   console.log(ctx);
   graph.style.display = 'block';
   // let chart = new Chart(ctx, {
-  new Chart(ctx, {
+  chart = new Chart(ctx, {
     type: 'bar',
     data: {
       labels: plabels,
@@ -87,8 +106,7 @@ const updateChart = function () {
         {
           label: 'Aantal waarnemingen',
           data: values,
-          backgroundColor: ['rgba(255, 99, 132, 0.2)', 'rgba(54, 162, 235, 0.2)', 'rgba(255, 206, 86, 0.2)', 'rgba(75, 192, 192, 0.2)', 'rgba(153, 102, 255, 0.2)', 'rgba(255, 159, 64, 0.2)'],
-          borderColor: ['rgba(255, 99, 132, 1)', 'rgba(54, 162, 235, 1)', 'rgba(255, 206, 86, 1)', 'rgba(75, 192, 192, 1)', 'rgba(153, 102, 255, 1)', 'rgba(255, 159, 64, 1)'],
+          backgroundColor: '#FEC760',
           borderWidth: 1,
         },
       ],
@@ -99,6 +117,7 @@ const updateChart = function () {
           {
             ticks: {
               beginAtZero: true,
+
             },
           },
         ],
@@ -106,9 +125,10 @@ const updateChart = function () {
       maintainAspectRatio: false,
     },
   });
-};
+}
 const save = async (id) => {
   saves.push(id);
+  checkClicks();
   mainpage = document.querySelector('.js-main');
   console.log(id);
   const data = await fetch(`https://api.gbif.org/v1/species/${id}?language=nl`)
@@ -145,11 +165,11 @@ const save = async (id) => {
 				<div class="c-card__header">
 					<h2 class="c-card__title">${data.scientificName}</h2>`;
   if (data.hasOwnProperty('vernacularName')) {
-    html += `<h3> ${data.vernacularName} </h3>`;
+    html += `<h3 class="c-card__subtitle"> ${data.vernacularName} </h3>`;
   }
   html += `</div>
 				<div class="c-card__body">
-					<img src="${image}" alt="Afbeelding van ${data.scientificName}" onerror="this.src='https://www.signfix.com.au/wp-content/uploads/2017/09/placeholder-600x400.png'" style="width : 100%; height: 25vh;  object-fit: cover;">
+					<img src="${image}" class="c-card__image" alt="Afbeelding van ${data.scientificName}" onerror="this.src='https://www.signfix.com.au/wp-content/uploads/2017/09/placeholder-600x400.png'" >
           <div class="c-card__buttons">
           	<input class="o-hide-accessible c-option c-option--hidden js-checkbox" type="checkbox" id="checkbox${data.key}" data-name="${data.scientificName}">
 					  <label class="c-label c-label--option c-custom-option js-show-label" data-id="${data.key}" data-count="${data3}" data-name="${data.scientificName}" data-checked=false for="checkbox${data.key}">
@@ -173,26 +193,26 @@ const save = async (id) => {
 				</div>
 			</div>
     </div>`;
-
-  mainpage.innerHTML += html;
+    let frag = document.createRange().createContextualFragment(html); 
+  
   checkClicks();
   graph = document.querySelector('.js-bar');
   updateChart();
-  let checkboxes = document.querySelectorAll('.js-checkbox');
+  let checkboxes = frag.querySelectorAll('.js-checkbox');
   checkboxes.forEach((checkbox) => {
     if (plabels.includes(checkbox.getAttribute('data-name'))) {
       checkbox.checked = true;
       // checkbox.querySelector(".js-show-label").setAttribute("data-checked", true)
     }
   });
-  let deletes = document.querySelectorAll('.js-bin');
+  let deletes = frag.querySelectorAll('.js-bin');
   deletes.forEach((pdelete) => {
     pdelete.addEventListener('click', function(){
       deleteCard(pdelete);
     })
     
   });
-  let shows = document.querySelectorAll('.js-show-label');
+  let shows = frag.querySelectorAll('.js-show-label');
   shows.forEach((show) => {
     show.addEventListener('click', function () {
       if (show.getAttribute('data-checked') == 'false') {
@@ -214,6 +234,7 @@ const save = async (id) => {
       }
     });
   });
+  mainpage.appendChild(frag)
 
   updateChart();
 };
@@ -532,5 +553,8 @@ document.addEventListener('DOMContentLoaded', function () {
   graph = document.querySelector('.js-bar');
   console.log(graph);
   console.log(sidebar.I);
+  initChart();
   getKingdomNames();
+  addScrollButton();
+  
 });
