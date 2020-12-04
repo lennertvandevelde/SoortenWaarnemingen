@@ -6,48 +6,72 @@ let values = [];
 let first = true;
 let saves = [];
 let chart;
-const addScrollButton = function(){
+let scrollTop = true;
+const checkScroll = function () {
+  let up = document.querySelector('.js-up');
+  let main = document.querySelector('.js-appmain');
+  if (scrollTop) {
+    window.addEventListener('scroll', function () {
+      if (window.scrollY != 0) {
+        up.classList.add('c-app__upbutton--enable');
+      } else {
+        up.classList.remove('c-app__upbutton--enable');
+      }
+    });
+    main.addEventListener('scroll', function () {
+      if (main.scrollY != 0) {
+        up.classList.add('c-app__upbutton--enable');
+      } else {
+        up.classList.remove('c-app__upbutton--enable');
+      }
+    });
+  }
+};
+const addScrollButton = function () {
   let main = document.querySelector('.js-appmain');
   let app = document.querySelector('.js-app');
+  let up = document.querySelector('.js-up');
 
-  document.querySelector('.js-up').addEventListener('click', function(){
-    main.scrollTo(0, 0)
-    window.scrollTo(0, 0)
-    console.log(window.scrollX)
-  })
-}
-const deleteCard = function(element){
+  up.addEventListener('click', function () {
+    scrollTop = false;
+    up.classList.remove('c-app__upbutton--enable');
+    main.scrollTo(0, 0);
+    window.scrollTo(0, 0);
+    console.log(window.scrollY);
+    
+    
+  });
+};
+const deleteCard = function (element) {
   console.log(plabels.indexOf(element.getAttribute('data-name')));
-  if(plabels.indexOf(element.getAttribute('data-name')) != -1){
+  if (plabels.indexOf(element.getAttribute('data-name')) != -1) {
     plabels.splice(plabels.indexOf(element.getAttribute('data-name')), 1);
-  values.splice(values.indexOf(element.getAttribute('data-count')), 1);
+    values.splice(values.indexOf(element.getAttribute('data-count')), 1);
   }
-  
+
   saves.splice(saves.indexOf(element.getAttribute('data-id')), 1);
-  element.classList.add("c-card__bin--clicked");
-  let card = document.querySelector(`.js-${element.getAttribute('data-id')}`)
+  element.classList.add('c-card__bin--clicked');
+  let card = document.querySelector(`.js-${element.getAttribute('data-id')}`);
   setTimeout(function () {
-    card.classList.add("c-dashboard__item--deleted");
+    card.classList.add('c-dashboard__item--deleted');
   }, 500);
   setTimeout(function () {
     card.remove();
-    updateChart()
-    checkClicks()
+    updateChart();
+    checkClicks();
   }, 1200);
-  
-}
+};
 const checkClicks = function () {
   let adds = document.querySelectorAll('.js-add');
   adds.forEach((add) => {
     if (saves.includes(add.getAttribute('data-id'))) {
-      console.log("AAA")
+      console.log('AAA');
       add.classList.add('c-clicked');
       setTimeout(function () {
         add.classList.add('o-hide-accessible');
       }, 2000);
-    }
-    else{
-      console.log(saves)
+    } else {
+      console.log(saves);
       add.classList.remove('c-clicked');
       add.classList.remove('o-hide-accessible');
     }
@@ -87,13 +111,12 @@ const showprevious = function (element) {
 };
 const updateChart = function () {
   console.log(values);
-  console.log(chart)
+  console.log(chart);
   chart.data.labels = plabels;
   chart.data.datasets.data = values;
   chart.update();
-
 };
-const initChart = function() {
+const initChart = function () {
   let ctx = graph.getContext('2d');
   console.log(ctx);
   graph.style.display = 'block';
@@ -117,7 +140,6 @@ const initChart = function() {
           {
             ticks: {
               beginAtZero: true,
-
             },
           },
         ],
@@ -125,7 +147,7 @@ const initChart = function() {
       maintainAspectRatio: false,
     },
   });
-}
+};
 const save = async (id) => {
   saves.push(id);
   checkClicks();
@@ -193,8 +215,8 @@ const save = async (id) => {
 				</div>
 			</div>
     </div>`;
-    let frag = document.createRange().createContextualFragment(html); 
-  
+  let frag = document.createRange().createContextualFragment(html);
+
   checkClicks();
   graph = document.querySelector('.js-bar');
   updateChart();
@@ -207,10 +229,9 @@ const save = async (id) => {
   });
   let deletes = frag.querySelectorAll('.js-bin');
   deletes.forEach((pdelete) => {
-    pdelete.addEventListener('click', function(){
+    pdelete.addEventListener('click', function () {
       deleteCard(pdelete);
-    })
-    
+    });
   });
   let shows = frag.querySelectorAll('.js-show-label');
   shows.forEach((show) => {
@@ -234,7 +255,7 @@ const save = async (id) => {
       }
     });
   });
-  mainpage.appendChild(frag)
+  mainpage.appendChild(frag);
 
   updateChart();
 };
@@ -556,5 +577,5 @@ document.addEventListener('DOMContentLoaded', function () {
   initChart();
   getKingdomNames();
   addScrollButton();
-  
+  checkScroll();
 });
