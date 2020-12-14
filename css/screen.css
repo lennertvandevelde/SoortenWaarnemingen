@@ -446,7 +446,7 @@ stroke : var(--global-color-beta);
 }
 .c-add__hor,
 .c-add__ver {
-  transition: all 0.75s ease-in;
+  transition: transform 0.75s ease-in;
 }
 .c-clicked {
   transform: rotate(90deg);
@@ -664,8 +664,10 @@ stroke : var(--global-color-beta);
   .c-app {
     display: grid;
     grid-template-columns: 17rem 1fr;
-    grid-template-rows: 1fr;
-    margin: 5vh;
+    margin-top: 5vh;
+    margin-bottom: 0;
+    margin-left: 5vh;
+    margin-right: 5vh;
   }
 
   .c-app__sidebar,
@@ -716,8 +718,8 @@ stroke : var(--global-color-beta);
   font-size: 1rem;
   line-height: calc(var(--global-baseline) * 4);
   padding: var(--global-whitespace-sm) var(--global-whitespace-lg) var(--global-whitespace-sm) var(--global-whitespace-md);
-  border-left: 5px solid var(--global-color-neutral-xxx-light);
-  transform: translateX(-5px);
+  /* border-left: 5px solid var(--global-color-neutral-xxx-light); */
+  transform: translateX(5px);
   width: calc(100% + 5px);
   transition: transform var(--global-transition-beta);
 }
