@@ -38,12 +38,9 @@ const addScrollButton = function () {
     main.scrollTo(0, 0);
     window.scrollTo(0, 0);
     console.log(window.scrollY);
-    
-    
   });
 };
 const deleteCard = function (element) {
-  console.log(plabels.indexOf(element.getAttribute('data-name')));
   if (plabels.indexOf(element.getAttribute('data-name')) != -1) {
     plabels.splice(plabels.indexOf(element.getAttribute('data-name')), 1);
     values.splice(values.indexOf(element.getAttribute('data-count')), 1);
@@ -65,13 +62,12 @@ const checkClicks = function () {
   let adds = document.querySelectorAll('.js-add');
   adds.forEach((add) => {
     if (saves.includes(add.getAttribute('data-id'))) {
-      console.log('AAA');
       add.classList.add('c-clicked');
       setTimeout(function () {
         add.classList.add('o-hide-accessible');
       }, 2000);
     } else {
-      console.log(saves);
+
       add.classList.remove('c-clicked');
       add.classList.remove('o-hide-accessible');
     }
@@ -89,8 +85,7 @@ const addClicks = function () {
 const removeprevious = function (classname) {
   let previous = document.querySelector('.js-back-list');
   let element = document.querySelector(`.${classname}`);
-  console.log(classname);
-  console.log(element);
+
   if (element != null) {
     previous.removeChild(element);
   }
@@ -110,15 +105,14 @@ const showprevious = function (element) {
   return li;
 };
 const updateChart = function () {
-  console.log(values);
-  console.log(chart);
+
   chart.data.labels = plabels;
   chart.data.datasets.data = values;
   chart.update();
 };
 const initChart = function () {
   let ctx = graph.getContext('2d');
-  console.log(ctx);
+
   graph.style.display = 'block';
   // let chart = new Chart(ctx, {
   chart = new Chart(ctx, {
@@ -152,7 +146,7 @@ const save = async (id) => {
   saves.push(id);
   checkClicks();
   mainpage = document.querySelector('.js-main');
-  console.log(id);
+
   const data = await fetch(`https://api.gbif.org/v1/species/${id}?language=nl`)
     .then((r) => r.json())
     .catch((err) => console.error('An error occured:', err));
@@ -163,7 +157,7 @@ const save = async (id) => {
     .then((r) => r.json())
     .then(updateChart())
     .catch((err) => console.error('An error occured:', err));
-  console.log(data2);
+
   let image;
   if (data2.results != undefined && data2.results.length) {
     let i = 0;
@@ -180,7 +174,7 @@ const save = async (id) => {
   } else {
     image = 'https://www.signfix.com.au/wp-content/uploads/2017/09/placeholder-600x400.png';
   }
-  console.log(image);
+
   let html = ' ';
   html = `<div class="c-dashboard__item u-x-span-3-bp3 js-${data.key}">
 				<div class="c-card">
@@ -202,13 +196,15 @@ const save = async (id) => {
   						</span>
   						Toon op grafiek
             </label>
-            <svg class="c-card__bin js-bin" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" data-id="${data.key}" data-name="${data.scientificName}" data-count="${data3}">
+            <button class="o-button-reset c-card__button js-bin " data-id="${data.key}" data-name="${data.scientificName}" data-count="${data3}">
+              <svg class="c-card__bin " xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" >
+  
+                <path class="c-card__bin-top" d="M15,3.75 C15.5522847,3.75 16,4.19771525 16,4.75 L16,5.75 L18.25,5.75 C18.6642136,5.75 19,6.08578644 19,6.5 C19,6.91421356 18.6642136,7.25 18.25,7.25 L5.75,7.25 C5.33578644,7.25 5,6.91421356 5,6.5 C5,6.08578644 5.33578644,5.75 5.75,5.75 L8,5.75 L8,4.75 C8,4.19771525 8.44771525,3.75 9,3.75 L15,3.75 Z M14,5 L10,5 C9.72385763,5 9.5,5.22385763 9.5,5.5 C9.5,5.74545989 9.67687516,5.94960837 9.91012437,5.99194433 L10,6 L14,6 C14.2761424,6 14.5,5.77614237 14.5,5.5 C14.5,5.25454011 14.3231248,5.05039163 14.0898756,5.00805567 L14,5 Z"></path>
+                <path transform="translate(0 0)" d="M7.02498527,8.25 L16.9751371,8.25 C17.5411532,8.25 18,8.69771525 18,9.25 C18,9.2951932 17.9968602,9.34033442 17.9906022,9.3851132 L16.6878729,18.7066989 C16.6389095,19.0569074 16.4041276,19.3558931 16.0703039,19.4931212 C14.8428392,19.9977071 13.4860916,20.25 12.0000612,20.25 C10.5140229,20.25 9.1572688,19.9977044 7.92979891,19.4931132 C7.59597391,19.3558774 7.36118974,19.0568881 7.31224574,18.7066728 L6.00952014,9.3851132 C5.93304388,8.83789281 6.32568685,8.33379079 6.88651275,8.25916983 C6.93240487,8.25306363 6.97866843,8.25 7.02498527,8.25 Z"></path>
+  
+              </svg>
 
-            <path class="c-card__bin-top" d="M15,3.75 C15.5522847,3.75 16,4.19771525 16,4.75 L16,5.75 L18.25,5.75 C18.6642136,5.75 19,6.08578644 19,6.5 C19,6.91421356 18.6642136,7.25 18.25,7.25 L5.75,7.25 C5.33578644,7.25 5,6.91421356 5,6.5 C5,6.08578644 5.33578644,5.75 5.75,5.75 L8,5.75 L8,4.75 C8,4.19771525 8.44771525,3.75 9,3.75 L15,3.75 Z M14,5 L10,5 C9.72385763,5 9.5,5.22385763 9.5,5.5 C9.5,5.74545989 9.67687516,5.94960837 9.91012437,5.99194433 L10,6 L14,6 C14.2761424,6 14.5,5.77614237 14.5,5.5 C14.5,5.25454011 14.3231248,5.05039163 14.0898756,5.00805567 L14,5 Z"></path>
-            <path transform="translate(0 0)" d="M7.02498527,8.25 L16.9751371,8.25 C17.5411532,8.25 18,8.69771525 18,9.25 C18,9.2951932 17.9968602,9.34033442 17.9906022,9.3851132 L16.6878729,18.7066989 C16.6389095,19.0569074 16.4041276,19.3558931 16.0703039,19.4931212 C14.8428392,19.9977071 13.4860916,20.25 12.0000612,20.25 C10.5140229,20.25 9.1572688,19.9977044 7.92979891,19.4931132 C7.59597391,19.3558774 7.36118974,19.0568881 7.31224574,18.7066728 L6.00952014,9.3851132 C5.93304388,8.83789281 6.32568685,8.33379079 6.88651275,8.25916983 C6.93240487,8.25306363 6.97866843,8.25 7.02498527,8.25 Z"></path>
-
-        </svg>
-
+            </button>
 
 
 					</div>
@@ -224,7 +220,6 @@ const save = async (id) => {
   checkboxes.forEach((checkbox) => {
     if (plabels.includes(checkbox.getAttribute('data-name'))) {
       checkbox.checked = true;
-      // checkbox.querySelector(".js-show-label").setAttribute("data-checked", true)
     }
   });
   let deletes = frag.querySelectorAll('.js-bin');
@@ -237,14 +232,14 @@ const save = async (id) => {
   shows.forEach((show) => {
     show.addEventListener('click', function () {
       if (show.getAttribute('data-checked') == 'false') {
-        console.log('if');
+
         graph = document.querySelector('.js-bar');
         plabels.push(show.getAttribute('data-name'));
         values.push(show.getAttribute('data-count'));
         show.setAttribute('data-checked', true);
         updateChart();
       } else {
-        console.log('else');
+
 
         graph = document.querySelector('.js-bar');
         plabels.splice(plabels.indexOf(show.getAttribute('data-name')), 1);
@@ -265,8 +260,7 @@ const showSpecies = async (genus) => {
     .then((r) => r.json())
     .catch((err) => console.error('An error occured:', err));
 
-  console.log('GEN');
-  console.log(data);
+
   let html = '';
   let loop = true;
   let offset = 0;
@@ -286,17 +280,17 @@ const showSpecies = async (genus) => {
 		  </svg>
 		  </li>`;
     }
-    console.log(data.results.length);
+
 
     if (data.results.length <= 100) {
       loop = false;
     }
     offset = offset + 100;
-    console.log(offset);
+
     data = await fetch(`https://api.gbif.org/v1/species/${genus.getAttribute('data-id')}/children?limit=100&offset=${offset}`)
       .then((r) => r.json())
       .catch((err) => console.error('An error occured:', err));
-    console.log(data);
+
   }
   sidebar.innerHTML = html;
   addClicks();
@@ -307,8 +301,6 @@ const showGenus = async (family) => {
     .then((r) => r.json())
     .catch((err) => console.error('An error occured:', err));
 
-  console.log('GEN');
-  console.log(data);
   let html = '';
   let loop = true;
   let offset = 0;
@@ -328,17 +320,17 @@ const showGenus = async (family) => {
 		  </svg>
 		</li>`;
     }
-    console.log(data.results.length);
+
 
     if (data.results.length <= 100) {
       loop = false;
     }
     offset = offset + 100;
-    console.log(offset);
+
     data = await fetch(`https://api.gbif.org/v1/species/${family.getAttribute('data-id')}/children?limit=100&offset=${offset}`)
       .then((r) => r.json())
       .catch((err) => console.error('An error occured:', err));
-    console.log(data);
+
   }
   sidebar.innerHTML = html;
   let geni = document.querySelectorAll('.js-genus');
@@ -357,10 +349,10 @@ const showFamily = async (order) => {
   const data = await fetch(`https://api.gbif.org/v1/species/${order.getAttribute('data-id')}/children?limit=100`)
     .then((r) => r.json())
     .catch((err) => console.error('An error occured:', err));
-  console.log(data);
+
   let html = '';
   for (let result of data.results) {
-    console.log(result);
+
     if (result.rank != 'FAMILY') {
       break;
     }
@@ -393,10 +385,10 @@ const showOrder = async (pclass) => {
   const data = await fetch(`https://api.gbif.org/v1/species/${pclass.getAttribute('data-id')}/children?limit=100`)
     .then((r) => r.json())
     .catch((err) => console.error('An error occured:', err));
-  console.log(data);
+
   let html = '';
   for (let result of data.results) {
-    console.log(result);
+
     if (result.rank != 'ORDER') {
       break;
     }
@@ -429,10 +421,10 @@ const showClass = async (phyl) => {
   const data = await fetch(`https://api.gbif.org/v1/species/${phyl.getAttribute('data-id')}/children?limit=100`)
     .then((r) => r.json())
     .catch((err) => console.error('An error occured:', err));
-  console.log(data);
+
   let html = '';
   for (let result of data.results) {
-    console.log(result);
+
     if (result.rank != 'CLASS') {
       break;
     }
@@ -463,14 +455,14 @@ const showClass = async (phyl) => {
 };
 
 const showSub = async (kingdom) => {
-  console.log(kingdom.getAttribute('data-id'));
+
   const data = await fetch(`https://api.gbif.org/v1/species/${kingdom.getAttribute('data-id')}/children?limit=100`)
     .then((r) => r.json())
     .catch((err) => console.error('An error occured:', err));
-  console.log(data);
+
   let html = '';
   for (let result of data.results) {
-    console.log(result);
+
     if (result.rank != 'PHYLUM' && result.rank != 'ORDER') {
       break;
     }
@@ -519,14 +511,14 @@ const getKingdomNames = async () => {
   const data = await fetch(`https://api.gbif.org/v1/species?offset=1&limit=8`)
     .then((r) => r.json())
     .catch((err) => console.error('An error occured:', err));
-  console.log(data);
+
   let html = '';
   data.results.forEach((element) => {
-    console.log(element);
+
     html += `<li class="c-main-nav__item "  >
-				<span class="c-main-nav__link js-kingdom" data-id=${element.key} data-name=${element.scientificName} data-rank=${element.rank}>
+				<a class="c-main-nav__link js-kingdom" data-id=${element.key} data-name=${element.scientificName} data-rank=${element.rank}>
 					${element.scientificName} (${element.rank})
-				</span>
+				</a>
         <svg class="c-add js-add" data-id=${element.key} xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 64 64">
 			  <line class="c-add__ver" id="Line_14" data-name="Line 14" y2="64" transform="translate(32 0)" fill="none" stroke="#f9f8f6" stroke-width="5"/>
 			  <line class="c-add__hor" id="Line_15" data-name="Line 15" x2="64" transform="translate(0 32)" fill="none" stroke="#f9f8f6" stroke-width="5"/>
@@ -536,9 +528,9 @@ const getKingdomNames = async () => {
   });
   sidebar.innerHTML = html;
   let kingdoms = document.querySelectorAll('.js-kingdom');
-  kingdoms.forEach((kingdom) => {
+  for await (let kingdom of kingdoms) {
     if (first) {
-      save(kingdom.getAttribute('data-id'));
+      await save(kingdom.getAttribute('data-id'));
 
       document.querySelector('.js-home').addEventListener('click', function () {
         getKingdomNames();
@@ -562,7 +554,17 @@ const getKingdomNames = async () => {
       });
       showSub(kingdom);
     });
+  }
+  let shows = document.querySelectorAll('.js-show-label');
+  shows.forEach((show) => {
+    show.dispatchEvent(new CustomEvent('click'));
   });
+  let checkboxes = document.querySelectorAll('.js-checkbox');
+  checkboxes.forEach((checkbox) => {
+    if (plabels.includes(checkbox.getAttribute('data-name'))) {
+      checkbox.checked = true;
+    }
+  })
 
   addClicks();
   first = false;
@@ -572,8 +574,6 @@ document.addEventListener('DOMContentLoaded', function () {
   // 1 We will query the API with longitude and latitude.
   sidebar = document.querySelector('.js-list');
   graph = document.querySelector('.js-bar');
-  console.log(graph);
-  console.log(sidebar.I);
   initChart();
   getKingdomNames();
   addScrollButton();

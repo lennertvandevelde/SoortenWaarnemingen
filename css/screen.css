@@ -640,7 +640,6 @@ input::placeholder {
 */
 .c-main-nav--previous {
   padding-bottom: 15px;
-  border-bottom: 10px solid var(--global-color-neutral-xxxx-light);
 }
 /* .c-main-nav--selecting{
     padding: 60px 0px 0px 0px;
@@ -847,9 +846,17 @@ input::placeholder {
   justify-content: space-between;
   margin-top: 10px;
 }
+.c-card__button {
+  background-color: #662730;
+  border-radius: 8px;
+  padding-left: 20px;
+  padding-right: 20px;
+
+
+}
 .c-card__bin {
   height: 30px;
-  fill: #662730;
+  fill: white;
   cursor: pointer;
 }
 
@@ -857,7 +864,7 @@ input::placeholder {
   transition: all 0.75s ease-in;
 }
 
-.c-card__bin--clicked > .c-card__bin-top {
+.c-card__bin--clicked  .c-card__bin-top {
   transform: rotate(-15deg);
   transform-origin: left bottom;
 }
