@@ -61,14 +61,15 @@ const deleteCard = function (element) {
 const checkClicks = function () {
   let adds = document.querySelectorAll('.js-add');
   adds.forEach((add) => {
+    let addsymbol = add.querySelector(".js-add__symbol")
     if (saves.includes(add.getAttribute('data-id'))) {
-      add.classList.add('c-clicked');
+      addsymbol.classList.add('c-clicked');
       setTimeout(function () {
         add.classList.add('o-hide-accessible');
       }, 2000);
     } else {
 
-      add.classList.remove('c-clicked');
+      addsymbol.classList.remove('c-clicked');
       add.classList.remove('o-hide-accessible');
     }
   });
@@ -264,20 +265,23 @@ const showSpecies = async (genus) => {
   let html = '';
   let loop = true;
   let offset = 0;
+  let i = 0;
   while (loop) {
     for (let result of data.results) {
+      i += 1;
       if (result.rank != 'SPECIES') {
         loop = false;
         break;
       }
       html += `<li class="c-main-nav__item "  >
-			  <span class="c-main-nav__link js-order"data-id=${result.key} >
+			  <a class="c-main-nav__link js-order" tabindex="${i}"  data-id=${result.key} >
 				  ${result.scientificName} (${result.rank})
-			  </span>
-			  <svg class="c-add js-add" data-id=${result.key} xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 64 64">
-			  <line class="c-add__ver" id="Line_14" data-name="Line 14" y2="64" transform="translate(32 0)" fill="none" stroke="#f9f8f6" stroke-width="5"/>
-			  <line class="c-add__hor" id="Line_15" data-name="Line 15" x2="64" transform="translate(0 32)" fill="none" stroke="#f9f8f6" stroke-width="5"/>
-		  </svg>
+			  </a>
+			  <button class="o-button-reset js-add" data-id=${result.key} >
+          <svg class="c-add js-add__symbol"  xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 64 64">
+  			  <line class="c-add__ver" id="Line_14" data-name="Line 14" y2="64" transform="translate(32 0)" fill="none" stroke="#f9f8f6" stroke-width="5"/>
+  			  <line class="c-add__hor" id="Line_15" data-name="Line 15" x2="64" transform="translate(0 32)" fill="none" stroke="#f9f8f6" stroke-width="5"/>
+        </button>
 		  </li>`;
     }
 
@@ -304,20 +308,23 @@ const showGenus = async (family) => {
   let html = '';
   let loop = true;
   let offset = 0;
+  let i = 0;
   while (loop) {
     for (let result of data.results) {
+      i += 1;
       if (result.rank != 'GENUS') {
         loop = false;
         break;
       }
       html += `<li class="c-main-nav__item "  >
-			<span class="c-main-nav__link js-genus"data-id=${result.key} data-name=${result.scientificName} data-rank=${result.rank}>
+			<a class="c-main-nav__link js-genus" tabindex="${i}" data-id=${result.key} data-name=${result.scientificName} data-rank=${result.rank}>
 				${result.scientificName} (${result.rank})
-			</span>
-			<svg class="c-add js-add" data-id=${result.key} xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 64 64">
-			  <line class="c-add__ver" id="Line_14" data-name="Line 14" y2="64" transform="translate(32 0)" fill="none" stroke="#f9f8f6" stroke-width="5"/>
-			  <line class="c-add__hor" id="Line_15" data-name="Line 15" x2="64" transform="translate(0 32)" fill="none" stroke="#f9f8f6" stroke-width="5"/>
-		  </svg>
+			</a>
+			<button class="o-button-reset js-add" data-id=${result.key} >
+          <svg class="c-add js-add__symbol"  xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 64 64">
+  			  <line class="c-add__ver" id="Line_14" data-name="Line 14" y2="64" transform="translate(32 0)" fill="none" stroke="#f9f8f6" stroke-width="5"/>
+  			  <line class="c-add__hor" id="Line_15" data-name="Line 15" x2="64" transform="translate(0 32)" fill="none" stroke="#f9f8f6" stroke-width="5"/>
+        </button>
 		</li>`;
     }
 
@@ -351,19 +358,21 @@ const showFamily = async (order) => {
     .catch((err) => console.error('An error occured:', err));
 
   let html = '';
+  let i = 0
   for (let result of data.results) {
-
+    i += 1;
     if (result.rank != 'FAMILY') {
       break;
     }
     html += `<li class="c-main-nav__item "  >
-		  <span class="c-main-nav__link js-family"data-id=${result.key} data-name=${result.scientificName} data-rank=${result.rank}>
+		  <a class="c-main-nav__link js-family" tabindex="${i}" data-id=${result.key} data-name=${result.scientificName} data-rank=${result.rank}>
 			  ${result.scientificName} (${result.rank})
-		  </span>
-		  <svg class="c-add js-add" data-id=${result.key} xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 64 64">
-			  <line class="c-add__ver" id="Line_14" data-name="Line 14" y2="64" transform="translate(32 0)" fill="none" stroke="#f9f8f6" stroke-width="5"/>
-			  <line class="c-add__hor" id="Line_15" data-name="Line 15" x2="64" transform="translate(0 32)" fill="none" stroke="#f9f8f6" stroke-width="5"/>
-		  </svg>
+		  </a>
+		  <button class="o-button-reset js-add" data-id=${result.key} >
+          <svg class="c-add js-add__symbol"  xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 64 64">
+  			  <line class="c-add__ver" id="Line_14" data-name="Line 14" y2="64" transform="translate(32 0)" fill="none" stroke="#f9f8f6" stroke-width="5"/>
+  			  <line class="c-add__hor" id="Line_15" data-name="Line 15" x2="64" transform="translate(0 32)" fill="none" stroke="#f9f8f6" stroke-width="5"/>
+        </button>
 	  </li>`;
   }
   sidebar.innerHTML = html;
@@ -387,19 +396,21 @@ const showOrder = async (pclass) => {
     .catch((err) => console.error('An error occured:', err));
 
   let html = '';
+  let i = 0
   for (let result of data.results) {
-
+    i += 1;
     if (result.rank != 'ORDER') {
       break;
     }
     html += `<li class="c-main-nav__item "  >
-		  <span class="c-main-nav__link js-order"data-id=${result.key} data-name=${result.scientificName} data-rank=${result.rank}>
+		  <a class="c-main-nav__link js-order" tabindex="${i}" data-id=${result.key} data-name=${result.scientificName} data-rank=${result.rank}>
 			  ${result.scientificName} (${result.rank})
-		  </span>
-		  <svg class="c-add js-add" data-id=${result.key} xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 64 64">
-			  <line class="c-add__ver" id="Line_14" data-name="Line 14" y2="64" transform="translate(32 0)" fill="none" stroke="#f9f8f6" stroke-width="5"/>
-			  <line class="c-add__hor" id="Line_15" data-name="Line 15" x2="64" transform="translate(0 32)" fill="none" stroke="#f9f8f6" stroke-width="5"/>
-		  </svg>
+		  </a>
+		  <button class="o-button-reset js-add" data-id=${result.key} >
+          <svg class="c-add js-add__symbol"  xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 64 64">
+  			  <line class="c-add__ver" id="Line_14" data-name="Line 14" y2="64" transform="translate(32 0)" fill="none" stroke="#f9f8f6" stroke-width="5"/>
+  			  <line class="c-add__hor" id="Line_15" data-name="Line 15" x2="64" transform="translate(0 32)" fill="none" stroke="#f9f8f6" stroke-width="5"/>
+        </button>
 	  </li>`;
   }
   sidebar.innerHTML = html;
@@ -423,19 +434,21 @@ const showClass = async (phyl) => {
     .catch((err) => console.error('An error occured:', err));
 
   let html = '';
+  let i = 0
   for (let result of data.results) {
-
+    i += 1;
     if (result.rank != 'CLASS') {
       break;
     }
     html += `<li class="c-main-nav__item "  >
-		  <span class="c-main-nav__link js-class"data-id=${result.key} data-name=${result.scientificName} data-rank=${result.rank}>
+		  <a class="c-main-nav__link js-class"tabindex="${i}" data-id=${result.key} data-name=${result.scientificName} data-rank=${result.rank}>
 			  ${result.scientificName} (${result.rank})
-		  </span>
-		  <svg class="c-add js-add" data-id=${result.key} xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 64 64">
-			  <line class="c-add__ver" id="Line_14" data-name="Line 14" y2="64" transform="translate(32 0)" fill="none" stroke="#f9f8f6" stroke-width="5"/>
-			  <line class="c-add__hor" id="Line_15" data-name="Line 15" x2="64" transform="translate(0 32)" fill="none" stroke="#f9f8f6" stroke-width="5"/>
-		  </svg>
+		  </a>
+		  <button class="o-button-reset js-add" data-id=${result.key} >
+          <svg class="c-add js-add__symbol"  xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 64 64">
+  			  <line class="c-add__ver" id="Line_14" data-name="Line 14" y2="64" transform="translate(32 0)" fill="none" stroke="#f9f8f6" stroke-width="5"/>
+  			  <line class="c-add__hor" id="Line_15" data-name="Line 15" x2="64" transform="translate(0 32)" fill="none" stroke="#f9f8f6" stroke-width="5"/>
+        </button>
 	  </li>`;
   }
   sidebar.innerHTML = html;
@@ -461,19 +474,21 @@ const showSub = async (kingdom) => {
     .catch((err) => console.error('An error occured:', err));
 
   let html = '';
+  let i = 0;
   for (let result of data.results) {
-
+    i+= 1;
     if (result.rank != 'PHYLUM' && result.rank != 'ORDER') {
       break;
     }
     html += `<li class="c-main-nav__item "  >
-		<span class="c-main-nav__link js-sub"data-id=${result.key} data-name=${result.scientificName} data-rank=${result.rank}>
+		<a class="c-main-nav__link js-sub"tabindex="${i}" data-id=${result.key} data-name=${result.scientificName} data-rank=${result.rank}>
 			${result.scientificName} (${result.rank})
-		</span>
-		<svg class="c-add js-add" data-id=${result.key} xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 64 64">
-			  <line class="c-add__ver" id="Line_14" data-name="Line 14" y2="64" transform="translate(32 0)" fill="none" stroke="#f9f8f6" stroke-width="5"/>
-			  <line class="c-add__hor" id="Line_15" data-name="Line 15" x2="64" transform="translate(0 32)" fill="none" stroke="#f9f8f6" stroke-width="5"/>
-		  </svg>
+		</a>
+		<button class="o-button-reset js-add" data-id=${result.key} >
+          <svg class="c-add js-add__symbol"  xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 64 64">
+  			  <line class="c-add__ver" id="Line_14" data-name="Line 14" y2="64" transform="translate(32 0)" fill="none" stroke="#f9f8f6" stroke-width="5"/>
+  			  <line class="c-add__hor" id="Line_15" data-name="Line 15" x2="64" transform="translate(0 32)" fill="none" stroke="#f9f8f6" stroke-width="5"/>
+        </button>
 	</li>`;
   }
   sidebar.innerHTML = html;
@@ -516,12 +531,14 @@ const getKingdomNames = async () => {
   data.results.forEach((element) => {
 
     html += `<li class="c-main-nav__item "  >
-				<a class="c-main-nav__link js-kingdom" data-id=${element.key} data-name=${element.scientificName} data-rank=${element.rank}>
+				<a class="c-main-nav__link js-kingdom" tabindex="${element.key}" data-id=${element.key} data-name=${element.scientificName} data-rank=${element.rank}>
 					${element.scientificName} (${element.rank})
 				</a>
-        <svg class="c-add js-add" data-id=${element.key} xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 64 64">
-			  <line class="c-add__ver" id="Line_14" data-name="Line 14" y2="64" transform="translate(32 0)" fill="none" stroke="#f9f8f6" stroke-width="5"/>
-			  <line class="c-add__hor" id="Line_15" data-name="Line 15" x2="64" transform="translate(0 32)" fill="none" stroke="#f9f8f6" stroke-width="5"/>
+        <button class="o-button-reset js-add" data-id=${element.key} >
+          <svg class="c-add js-add__symbol"  xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 64 64">
+  			  <line class="c-add__ver" id="Line_14" data-name="Line 14" y2="64" transform="translate(32 0)" fill="none" stroke="#f9f8f6" stroke-width="5"/>
+  			  <line class="c-add__hor" id="Line_15" data-name="Line 15" x2="64" transform="translate(0 32)" fill="none" stroke="#f9f8f6" stroke-width="5"/>
+        </button>
 		  </svg>
 
 			</li>`;
