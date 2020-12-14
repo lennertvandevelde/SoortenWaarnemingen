@@ -338,7 +338,25 @@ input::placeholder {
 /*------------------------------------*\
 #COMPONENTS
 \*------------------------------------*/
+.c-landing {
+  display: flex;
+  flex-direction: row;
+}
+.c-landing__mockup {
+  background-image: url("../mockup.png");
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  width: 60vw;
+}
+.c-landing__form {
+  background-color: var(--global-color-neutral-xx-dark);
+  width: 40vw;
+}
+
 /* addbutton */
+
+
 .c-add-button{
   cursor: pointer;
   outline: none;
