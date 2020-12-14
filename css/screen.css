@@ -15,11 +15,12 @@
   --global-color-alpha: #263369;
 
   --global-color-beta: #fec760;
-  --global-color-beta--transparant: #fec760A6;
+  --global-color-beta--transparant: #fec760cb;
 
   --global-color-gamma-light: #994D57;
   --global-color-gamma: #662730;
   --global-color-gamma-dark: #4D1D24;
+  --global-color-gamma-transparant: #66273080;
 
 
   
@@ -36,10 +37,9 @@
 
   /* Shadows */
   --global-box-shadow: 0 0 0 3px var(--global-color-beta--transparant);
-  --global-box-shadow-lg: 0 0 0 1px rgba(0, 0, 0, 0.025), 0 2px 10px rgba(0, 0, 0, 0.1);
+  --global-box-button-shadow: 0 0 0 3px var(--global-color-gamma--transparant);
+  
 
-  --global-input-shadow: 0 2px 3px rgba(0, 0, 0, 0.05);
-  --global-input-focus-shadow: 0 0 5px var(--global-color-alpha-light);
 
   /* radius */
   --global-borderRadius: calc(4rem / var(--global-root-font-size));
@@ -370,43 +370,13 @@ stroke : var(--global-color-beta);
 .c-option {
   margin-right: var(--global-whitespace-sm);
 }
-.c-option--hidden:focus + .c-custom-option,
-.c-option--hidden:active + .c-custom-option {
-  --custom-option-borderColor: var(--global-color-neutral-xx-light);
-  --custom-option-boxShadow: var(--custom-option-focus-boxShadow);
-}
+
 .c-option--hidden:checked + .c-custom-option .c-custom-option__symbol {
   opacity: 1; /* Show the symbol when the invisible checkbox/radio button is checked */
   transform: scale(1);
 }
 
-.c-option--hidden:focus + .c-custom-toggle,
-.c-option--hidden:active + .c-custom-toggle {
-  --toggle-borderColor: var(--toggle-focus-borderColor);
-  --toggle-boxShadow: var(--toggle-focus-boxShadow);
-}
 
-/* checked state */
-
-.c-option--hidden:checked + .c-custom-toggle {
-  --toggle-backgroundColor: var(--toggle-checked-backgroundColor);
-  --toggle-borderColor: var(--toggle-checked-borderColor);
-  --toggle__switch-backgroundColor: var(--toggle__switch-checked-backgroundColor);
-}
-
-.c-option--hidden:checked + .c-custom-toggle .c-custom-toggle__fake-input::after {
-  transform: translate(24px, 0);
-}
-
-/* special active state */
-
-.c-option--hidden:active + .c-custom-toggle .c-custom-toggle__fake-input::after {
-  width: 28px;
-}
-
-.c-option--hidden:active:checked + .c-custom-toggle .c-custom-toggle__fake-input::after {
-  margin-left: -6px;
-}
 
 /*
     Component: Label
@@ -436,13 +406,11 @@ stroke : var(--global-color-beta);
 /* Hide the actual input with the class .o-hide-accessible */
 
 .c-custom-option {
-  --custom-option-background: var(--global-input-backgroundColor);
   --custom-option-borderRadius: var(--global-borderRadius);
-  --custom-option-borderColor: var(--global-input-borderColor);
+  --custom-option-borderColor: var(--global-color-neutral-xx-light);
   --custom-option-hover-borderColor: var(--global-input-hover-borderColor);
   --custom-option-focus-borderColor: var(--global-input-focus-borderColor);
-  --custom-option-focus-boxShadowColor: var(--global-input-focus-boxShadowColor);
-  --custom-option-focus-boxShadow: var(--global-input-focus-boxShadowSpread) var(--custom-option-focus-boxShadowColor);
+  --custom-option-boxShadow: 0;
   --custom-option__symbol-fill: var(--global-color-alpha);
   --custom-option-transition: var(--global-transition-alpha) var(--global-transitionEasing-out);
   display: flex;
@@ -458,18 +426,16 @@ stroke : var(--global-color-beta);
   height: 16px;
   margin-right: 8px;
   background: var(--custom-option-background);
-  border: 1px solid var(--global-color-neutral-xx-light);
+  border: 1px solid var(--custom-option-borderColor);
   transition: all var(--custom-option-transition);
-  box-shadow: var(--custom-option-boxShadow, 0);
+  box-shadow: var(--custom-option-boxShadow);
 }
 
 .c-custom-option__fake-input--checkbox {
   border-radius: var(--custom-option-borderRadius);
 }
 
-.c-custom-option__fake-input--radio {
-  border-radius: 100%;
-}
+
 
 .c-custom-option__symbol {
   display: block;
@@ -494,15 +460,15 @@ stroke : var(--global-color-beta);
 /* hover state */
 
 .c-custom-option:hover {
-  --custom-option-borderColor: var(--custom-option-hover-borderColor);
+  --custom-option-borderColor: var(--global-color-neutral-xxx-light);
 }
 
 /* focused and active state */
 
 .c-option--hidden:focus + .c-custom-option,
 .c-option--hidden:active + .c-custom-option {
-  --custom-option-borderColor: var(--custom-option-focus-borderColor);
-  --custom-option-boxShadow: var(--custom-option-focus-boxShadow);
+  --custom-option-borderColor: var(--global-color-neutral);
+  --custom-option-boxShadow: var(--global-box-shadow);
 }
 
 /* checked state */
@@ -661,9 +627,6 @@ stroke : var(--global-color-beta);
   align-items: center;
   text-decoration: none;
   color: #fff;
-  /* font-size: 15px; */
-  /* line-height: 20px; */
-  /* padding: 15px 25px 15px 20px; */
   font-size: 1rem;
   line-height: calc(var(--global-baseline) * 4);
   padding: var(--global-whitespace-sm) var(--global-whitespace-lg) var(--global-whitespace-sm) var(--global-whitespace-md);
@@ -822,6 +785,7 @@ stroke : var(--global-color-beta);
 .c-card__button:active{
   outline: none;
   background-color: var(--global-color-gamma-dark);
+  box-shadow: var(--global-box-shadow)  ;
 
 }
 .c-card__bin {
