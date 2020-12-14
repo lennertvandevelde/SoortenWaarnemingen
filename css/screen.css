@@ -15,8 +15,12 @@
   --global-color-alpha: #263369;
 
   --global-color-beta: #fec760;
-  --global-color-beta--transparant: #fec760cb;
+  --global-color-beta-light: #FEE3B2;
+  --global-color-beta-dark: #E6990B;
 
+
+  --global-color-beta--transparant: #fec760cb;
+  --global-color-gamma-x-light: #E6455C;
   --global-color-gamma-light: #994D57;
   --global-color-gamma: #662730;
   --global-color-gamma-dark: #4D1D24;
@@ -264,6 +268,11 @@ input::placeholder {
   position: relative;
   padding: var(--global-whitespace-lg) var(--global-whitespace-lg) var(--global-baseline);
 }
+.o-row--form {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+}
 
 /*
     Objects: Container
@@ -338,21 +347,85 @@ input::placeholder {
 /*------------------------------------*\
 #COMPONENTS
 \*------------------------------------*/
-.c-landing {
-  display: flex;
-  flex-direction: row;
-}
+
 .c-landing__mockup {
   background-image: url("../mockup.png");
   background-size: cover;
   background-position: center;
-  height: 100vh;
-  width: 60vw;
+  width: 100vw;
+  height: 70vh;
 }
-.c-landing__form {
+.c-landing__info {
   background-color: var(--global-color-neutral-xx-dark);
-  width: 40vw;
+
 }
+.c-form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  flex-direction: column;
+}
+.c-form-field {
+  width: 100%;
+}
+.c-form--label{
+  display: flex;
+  justify-items: end;
+  flex-direction: row-reverse;
+}
+.c-form--sendbutton {
+  background-color: var(--global-color-beta);
+  color: var(--global-color-neutral-xx-dark);
+  padding: 8px;
+  border-radius: var(--global-borderRadius);
+  cursor: pointer;
+}
+.c-form--sendbutton:hover {
+  background-color: var(--global-color-beta-light);
+}
+.c-form--sendbutton:focus,
+.c-form--sendbutton:active
+{
+  background-color: var(--global-color-beta-dark);
+  outline: none;
+  box-shadow: var(--global-box-shadow);
+}
+
+.c-label__error-message {
+  font-weight: 600;
+  float: right;
+  display: none;
+  color: var(--global-color-gamma-x-light);
+}
+.c-label__error-message.is-visible {
+	display: block;
+}
+.c-input--form {
+  color: var(--global-color-neutral-xx-dark)
+}
+.c-input--form:focus,
+.c-input--form:active
+ {
+border: 1px solid var(--global-color-beta-dark);
+box-shadow: var(--global-box-shadow);
+}
+
+@media (min-width: 62em){
+  .c-landing {
+    display: flex;
+    flex-direction: row;
+  }
+  .c-landing__mockup {
+    height: 100vh;
+    width: 60vw;
+  }
+  .c-landing__info {
+    width: 40vw;
+  }
+}
+
+
 
 /* addbutton */
 
@@ -833,10 +906,9 @@ stroke : var(--global-color-beta);
   -moz-appearance: none;
   appearance: none;
   width: 100%;
-  border: 1px solid var(--global-color-neutral-xx-light);
   border-radius: var(--global-borderRadius);
   background-color: #fff;
-  color: var(--global-color-neutral-xxxx-dark);
+
   font-family: inherit;
   /* font-size: 13px;
     line-height: 20px;
@@ -850,16 +922,19 @@ stroke : var(--global-color-beta);
   box-shadow: var(--global-input-shadow);
 }
 
-.c-input:hover {
-  border-color: var(--global-color-neutral-x-light);
-}
 
-.c-input:focus,
-.c-input:active {
-  border-color: var(--global-color-alpha-light);
-  box-shadow: var(--global-input-focus-shadow);
-}
 
+/*------------------------------------*\
+#States
+\*------------------------------------*/
+
+.has-error {
+  --label-color: var(--global-color-error);
+  --input-borderColor: var(--global-input-error-borderColor);
+  --input-hover-borderColor: var(--global-input-error-borderColor);
+  --input-focus-borderColor: var(--global-input-error-borderColor);
+  --input-focus-boxShadowColor: var(--global-input-error-boxShadowColor);
+}
 
 
 /*------------------------------------*\

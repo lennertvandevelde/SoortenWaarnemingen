@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Landingpage</title>
-    <script src="script/app.js"></script>
+    <script src="script/validation.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.min.js"></script>
     <link rel="stylesheet" href="css/normalize.css" />
     <link rel="stylesheet" href="css/screen.css" />
@@ -14,8 +14,27 @@
     <div class="c-landing">
         <div class="c-landing__mockup">
         </div>
-        <div class="c-landing__form">
-            AA
+        <div class="c-landing__info">
+            <div class="o-row o-row--form">
+                <div class="o-container u-max-width-xs">
+                    <form class="c-form">
+                        <h1 class="c-form__title">Biodiversiteit in cijfers</h1>
+                        <p>De biodiversiteit van het leven op aarde is aanzienlijk gedaald de laatste jaren. Uit deze problematiek is het GBIF<b> (Global Biodiversity Information Facility)</b> ontstaan. Deze organistatie houdt data bij van dierenwaarnemingen van over de hele wereld.</p>
+                        <p>Van deze data maakten wij een visualisatie om te kjken hoe de waarnemingen verdeeld zijn en hoe het nu juist staat met onze biodiversiteit.</p>
+                        <p class="c-form-field js-email-field">
+                          <label class="c-form--label js-email-label" for="username"> 
+                              <span class="c-label__error-message js-email-error-message">
+                                Gelieve dit veld in te vullen
+                              </span>
+                          </label>
+                          <input class="c-input c-input--form js-email-input" type="email" name="username" id="username" placeholder="Jouw e-mailadres" required>
+                      </p>
+                      <button class="o-button-reset c-form--sendbutton js-sign-in-button">Houd mij op de hoogte</button>
+                    </form>
+
+                    
+                </div>
+            </div>
         </div>
     </div>
   </body>
