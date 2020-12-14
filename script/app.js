@@ -7,6 +7,23 @@ let first = true;
 let saves = [];
 let chart;
 let scrollTop = true;
+const checkHamb = function() {
+  let hamb = document.querySelector(".js-hamb")
+  hamb.addEventListener("click", function(){
+    let appsidebar =  document.querySelector(".js-appsidebar");
+    console.log("A")
+    if(appsidebar.getAttribute("data-colla") == 'true'){
+
+      appsidebar.style.display = "block"
+      appsidebar.setAttribute("data-colla", 'false' )
+    }
+    else{
+      appsidebar.style.display = "none"
+      appsidebar.setAttribute("data-colla", 'true' )
+
+    }
+  })
+}
 const checkScroll = function () {
   let up = document.querySelector('.js-up');
   let main = document.querySelector('.js-appmain');
@@ -588,11 +605,12 @@ const getKingdomNames = async () => {
 };
 
 document.addEventListener('DOMContentLoaded', function () {
-  // 1 We will query the API with longitude and latitude.
+
   sidebar = document.querySelector('.js-list');
   graph = document.querySelector('.js-bar');
   initChart();
   getKingdomNames();
   addScrollButton();
   checkScroll();
+  checkHamb();
 });
