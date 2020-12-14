@@ -277,10 +277,10 @@ const showSpecies = async (genus) => {
 			  <a class="c-main-nav__link js-order" tabindex="${i}"  data-id=${result.key} >
 				  ${result.scientificName} (${result.rank})
 			  </a>
-			  <button class="o-button-reset js-add" data-id=${result.key} >
-          <svg class="c-add js-add__symbol"  xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 64 64">
-  			  <line class="c-add__ver" id="Line_14" data-name="Line 14" y2="64" transform="translate(32 0)" fill="none" stroke="#f9f8f6" stroke-width="5"/>
-  			  <line class="c-add__hor" id="Line_15" data-name="Line 15" x2="64" transform="translate(0 32)" fill="none" stroke="#f9f8f6" stroke-width="5"/>
+			  <button class="o-button-reset js-add c-add-button" data-id=${result.key} >
+          <svg class="c-add js-add__symbol" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 64 64">
+  			  <line class="c-add__ver" id="Line_14" data-name="Line 14" y2="64" transform="translate(32 0)" fill="none"  stroke-width="5"/>
+  			  <line class="c-add__hor" id="Line_15" data-name="Line 15" x2="64" transform="translate(0 32)" fill="none"  stroke-width="5"/>
         </button>
 		  </li>`;
     }
@@ -320,10 +320,10 @@ const showGenus = async (family) => {
 			<a class="c-main-nav__link js-genus" tabindex="${i}" data-id=${result.key} data-name=${result.scientificName} data-rank=${result.rank}>
 				${result.scientificName} (${result.rank})
 			</a>
-			<button class="o-button-reset js-add" data-id=${result.key} >
+			<button class="o-button-reset js-add c-add-button" data-id=${result.key} >
           <svg class="c-add js-add__symbol"  xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 64 64">
-  			  <line class="c-add__ver" id="Line_14" data-name="Line 14" y2="64" transform="translate(32 0)" fill="none" stroke="#f9f8f6" stroke-width="5"/>
-  			  <line class="c-add__hor" id="Line_15" data-name="Line 15" x2="64" transform="translate(0 32)" fill="none" stroke="#f9f8f6" stroke-width="5"/>
+  			  <line class="c-add__ver" id="Line_14" data-name="Line 14" y2="64" transform="translate(32 0)" fill="none"   stroke-width="5"/>
+  			  <line class="c-add__hor" id="Line_15" data-name="Line 15" x2="64" transform="translate(0 32)" fill="none"   stroke-width="5"/>
         </button>
 		</li>`;
     }
@@ -368,10 +368,10 @@ const showFamily = async (order) => {
 		  <a class="c-main-nav__link js-family" tabindex="${i}" data-id=${result.key} data-name=${result.scientificName} data-rank=${result.rank}>
 			  ${result.scientificName} (${result.rank})
 		  </a>
-		  <button class="o-button-reset js-add" data-id=${result.key} >
+		  <button class="o-button-reset js-add c-add-button" data-id=${result.key} >
           <svg class="c-add js-add__symbol"  xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 64 64">
-  			  <line class="c-add__ver" id="Line_14" data-name="Line 14" y2="64" transform="translate(32 0)" fill="none" stroke="#f9f8f6" stroke-width="5"/>
-  			  <line class="c-add__hor" id="Line_15" data-name="Line 15" x2="64" transform="translate(0 32)" fill="none" stroke="#f9f8f6" stroke-width="5"/>
+  			  <line class="c-add__ver" id="Line_14" data-name="Line 14" y2="64" transform="translate(32 0)" fill="none"   stroke-width="5"/>
+  			  <line class="c-add__hor" id="Line_15" data-name="Line 15" x2="64" transform="translate(0 32)" fill="none"   stroke-width="5"/>
         </button>
 	  </li>`;
   }
@@ -406,10 +406,10 @@ const showOrder = async (pclass) => {
 		  <a class="c-main-nav__link js-order" tabindex="${i}" data-id=${result.key} data-name=${result.scientificName} data-rank=${result.rank}>
 			  ${result.scientificName} (${result.rank})
 		  </a>
-		  <button class="o-button-reset js-add" data-id=${result.key} >
+		  <button class="o-button-reset js-add c-add-button" data-id=${result.key} >
           <svg class="c-add js-add__symbol"  xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 64 64">
-  			  <line class="c-add__ver" id="Line_14" data-name="Line 14" y2="64" transform="translate(32 0)" fill="none" stroke="#f9f8f6" stroke-width="5"/>
-  			  <line class="c-add__hor" id="Line_15" data-name="Line 15" x2="64" transform="translate(0 32)" fill="none" stroke="#f9f8f6" stroke-width="5"/>
+  			  <line class="c-add__ver" id="Line_14" data-name="Line 14" y2="64" transform="translate(32 0)" fill="none"   stroke-width="5"/>
+  			  <line class="c-add__hor" id="Line_15" data-name="Line 15" x2="64" transform="translate(0 32)" fill="none"   stroke-width="5"/>
         </button>
 	  </li>`;
   }
@@ -444,10 +444,10 @@ const showClass = async (phyl) => {
 		  <a class="c-main-nav__link js-class"tabindex="${i}" data-id=${result.key} data-name=${result.scientificName} data-rank=${result.rank}>
 			  ${result.scientificName} (${result.rank})
 		  </a>
-		  <button class="o-button-reset js-add" data-id=${result.key} >
+		  <button class="o-button-reset js-add c-add-button" data-id=${result.key} >
           <svg class="c-add js-add__symbol"  xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 64 64">
-  			  <line class="c-add__ver" id="Line_14" data-name="Line 14" y2="64" transform="translate(32 0)" fill="none" stroke="#f9f8f6" stroke-width="5"/>
-  			  <line class="c-add__hor" id="Line_15" data-name="Line 15" x2="64" transform="translate(0 32)" fill="none" stroke="#f9f8f6" stroke-width="5"/>
+  			  <line class="c-add__ver" id="Line_14" data-name="Line 14" y2="64" transform="translate(32 0)" fill="none"   stroke-width="5"/>
+  			  <line class="c-add__hor" id="Line_15" data-name="Line 15" x2="64" transform="translate(0 32)" fill="none"   stroke-width="5"/>
         </button>
 	  </li>`;
   }
@@ -481,13 +481,13 @@ const showSub = async (kingdom) => {
       break;
     }
     html += `<li class="c-main-nav__item "  >
-		<a class="c-main-nav__link js-sub"tabindex="${i}" data-id=${result.key} data-name=${result.scientificName} data-rank=${result.rank}>
+		<a class="c-main-nav__link js-sub"  tabindex="${i}" data-id=${result.key} data-name=${result.scientificName} data-rank=${result.rank}>
 			${result.scientificName} (${result.rank})
 		</a>
-		<button class="o-button-reset js-add" data-id=${result.key} >
+		<button class="o-button-reset js-add c-add-button" data-id=${result.key} >
           <svg class="c-add js-add__symbol"  xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 64 64">
-  			  <line class="c-add__ver" id="Line_14" data-name="Line 14" y2="64" transform="translate(32 0)" fill="none" stroke="#f9f8f6" stroke-width="5"/>
-  			  <line class="c-add__hor" id="Line_15" data-name="Line 15" x2="64" transform="translate(0 32)" fill="none" stroke="#f9f8f6" stroke-width="5"/>
+  			  <line class="c-add__ver" id="Line_14" data-name="Line 14" y2="64" transform="translate(32 0)" fill="none"   stroke-width="5"/>
+  			  <line class="c-add__hor" id="Line_15" data-name="Line 15" x2="64" transform="translate(0 32)" fill="none"   stroke-width="5"/>
         </button>
 	</li>`;
   }
@@ -534,10 +534,10 @@ const getKingdomNames = async () => {
 				<a class="c-main-nav__link js-kingdom" tabindex="${element.key}" data-id=${element.key} data-name=${element.scientificName} data-rank=${element.rank}>
 					${element.scientificName} (${element.rank})
 				</a>
-        <button class="o-button-reset js-add" data-id=${element.key} >
+        <button class="o-button-reset js-add c-add-button" data-id=${element.key} >
           <svg class="c-add js-add__symbol"  xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 64 64">
-  			  <line class="c-add__ver" id="Line_14" data-name="Line 14" y2="64" transform="translate(32 0)" fill="none" stroke="#f9f8f6" stroke-width="5"/>
-  			  <line class="c-add__hor" id="Line_15" data-name="Line 15" x2="64" transform="translate(0 32)" fill="none" stroke="#f9f8f6" stroke-width="5"/>
+  			  <line class="c-add__ver" id="Line_14" data-name="Line 14" y2="64" transform="translate(32 0)" fill="none" stroke-width="5"/>
+  			  <line class="c-add__hor" id="Line_15" data-name="Line 15" x2="64" transform="translate(0 32)" fill="none" stroke-width="5"/>
         </button>
 		  </svg>
 

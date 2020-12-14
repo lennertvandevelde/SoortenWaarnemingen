@@ -15,6 +15,14 @@
   --global-color-alpha: #263369;
 
   --global-color-beta: #fec760;
+  --global-color-beta--transparant: #fec760A6;
+
+  --global-color-gamma-light: #994D57;
+  --global-color-gamma: #662730;
+  --global-color-gamma-dark: #4D1D24;
+
+
+  
 
   --global-color-neutral-xxxx-light: #f2f4ff;
   --global-color-neutral-xxx-light: #98a4d9;
@@ -27,7 +35,7 @@
   --global-color-neutral-xx-dark: #363a4d;
 
   /* Shadows */
-  --global-box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.025), 0 2px 6px rgba(0, 0, 0, 0.05);
+  --global-box-shadow: 0 0 0 3px var(--global-color-beta--transparant);
   --global-box-shadow-lg: 0 0 0 1px rgba(0, 0, 0, 0.025), 0 2px 10px rgba(0, 0, 0, 0.1);
 
   --global-input-shadow: 0 2px 3px rgba(0, 0, 0, 0.05);
@@ -90,12 +98,7 @@ html {
   box-sizing: inherit;
 }
 
-/*
-* Remove text-shadow in selection highlight:
-* https://twitter.com/miketaylr/status/12228805301
-*
-* Customize the background color to match your design.
-*/
+
 
 ::-moz-selection {
   background: var(--global-color-alpha);
@@ -218,7 +221,7 @@ hr {
 
 a {
   transition: all var(--global-transition-alpha);
-  color: var(--global-color-beta);
+  color: var(--global-color-gamma);
   outline-color: var(--global-color-beta);
   outline-width: medium;
   outline-offset: 2px;
@@ -226,12 +229,12 @@ a {
 
 a:visited,
 a:active {
-  color: var(--global-color-beta);
+  color: var(--global-color-gamma);
 }
 
 a:hover,
 a:focus {
-  color: var(--global-color-alpha);
+  color: var(--global-color-beta);
 }
 
 label,
@@ -336,9 +339,19 @@ input::placeholder {
 #COMPONENTS
 \*------------------------------------*/
 /* addbutton */
+.c-add-button{
+  cursor: pointer;
+  outline: none;
+}
+.c-add-button:focus .c-add, 
+.c-add-button:active .c-add
+{
+stroke : var(--global-color-beta);
 
+}
 .c-add {
-  transition: all 0.75s ease-in;
+
+  stroke: white;
 }
 .c-add__hor,
 .c-add__ver {
@@ -499,23 +512,8 @@ input::placeholder {
   transform: scale(1);
 }
 
-/*
-    Component: Logo
-    ---
-    Website main logo
-*/
 
-.c-logo {
-  margin: 0;
-  /* font-size: 15px; */
-  font-size: 1rem;
-  font-weight: bold;
-  text-transform: uppercase;
-  /* letter-spacing: 2px; */
-  letter-spacing: 0.13333333em; /* = 2px */
-  line-height: var(--global-whitespace-md);
-  color: #fff;
-}
+
 
 /*
     Component: App
@@ -641,18 +639,7 @@ input::placeholder {
 .c-main-nav--previous {
   padding-bottom: 15px;
 }
-/* .c-main-nav--selecting{
-    padding: 60px 0px 0px 0px;
-    overflow: hidden;
-}
-.KINGDOM + .c-main-nav--selecting{
-    padding: 120px 0px 0px 0px;
-    overflow: hidden;
-}
-.KINGDOM + .c-main-nav--selecting{
-    padding: 120px 0px 0px 0px;
-    overflow: hidden;
-} */
+
 
 .c-main-nav__list {
   margin-bottom: 0;
@@ -720,50 +707,24 @@ input::placeholder {
 }
 
 .c-main-nav__link:hover,
-.c-main-nav__link:focus,
 .is-selected .c-main-nav__link {
   color: #fff;
   background-color: var(--global-color-neutral-xx-dark);
   /* border-color: var(--global-color-alpha); */
   /* border-left-width: 5px; */
   transform: none;
+
 }
 
-.c-main-nav__icon {
-  /* display: block; */
-  /* width: 16px;
-    height: 16px; */
-  width: 1rem; /* = 15px */
-  height: 1rem;
-  margin-right: var(--global-whitespace-xs);
-  fill: var(--global-color-neutral-light);
-  transition: fill var(--global-transition-alpha);
+.c-main-nav__link:focus,
+.c-main-nav__link:active {
+  outline: none;
+  background-color: var(--global-color-neutral-xx-dark);
+  box-shadow: var(--global-box-shadow);
+  color: #fff;
 }
 
-.c-main-nav__link:hover .c-main-nav__icon,
-.c-main-nav__link:focus .c-main-nav__icon,
-.is-selected .c-main-nav__icon {
-  fill: var(--global-color-alpha);
-}
 
-/*
-    Component: topbar
-*/
-
-.slide-fade li {
-  transition: all 0.4s ease-out;
-  opacity: 0;
-}
-.slide-fade li.show {
-  opacity: 1;
-}
-.c-topbar {
-  padding: 0 var(--global-whitespace-lg);
-  height: 100%;
-  width: 100%;
-  display: flex;
-  align-items: center;
-}
 
 /*
     Component: Dashboard
@@ -848,11 +809,19 @@ input::placeholder {
   margin-top: 10px;
 }
 .c-card__button {
-  background-color: #662730;
+  background-color: var(--global-color-gamma);
   border-radius: 8px;
-  padding-left: 20px;
-  padding-right: 20px;
-
+  padding-left: 8px;
+  padding-right: 8px;
+  cursor: pointer;
+}
+.c-card__button:hover {
+  background-color: var(--global-color-gamma-light);
+}
+.c-card__button:focus,
+.c-card__button:active{
+  outline: none;
+  background-color: var(--global-color-gamma-dark);
 
 }
 .c-card__bin {
@@ -914,32 +883,7 @@ input::placeholder {
   box-shadow: var(--global-input-focus-shadow);
 }
 
-/*
-    Component: Custom Select
-    ---
-    Custom select dropdown
-*/
 
-.c-custom-select {
-  display: block;
-  position: relative;
-}
-
-.c-custom-select__input {
-  padding-right: calc(var(--global-baseline) * 5);
-}
-
-.c-custom-select__symbol {
-  width: calc(11rem / var(--global-root-font-size));
-  height: calc(16rem / var(--global-root-font-size));
-  position: absolute;
-  top: 50%;
-  /* transform: translateY(calc(-8rem / var(--global-root-font-size))); */
-  transform: translateY(-50%);
-  right: var(--global-whitespace-xs);
-  pointer-events: none;
-  fill: var(--global-color-neutral-light);
-}
 
 /*------------------------------------*\
 #UTILITIES
