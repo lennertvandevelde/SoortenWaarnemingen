@@ -643,8 +643,10 @@ stroke : var(--global-color-beta);
 .c-app__upbutton:hover {
   background-color: var(--global-color-neutral-x-light);
 }
-.c-app__upbutton:active {
+.c-app__upbutton:active,
+.c-app__upbutton:focus {
   background-color: var(--global-color-neutral-xx-light);
+  outline: none;
 }
 .c-app__upbutton--symbol {
   fill: var(--global-color-neutral-xx-dark);
