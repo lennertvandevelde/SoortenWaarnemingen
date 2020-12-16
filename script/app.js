@@ -13,12 +13,14 @@ const checkHamb = function() {
     let appsidebar =  document.querySelector(".js-appsidebar");
     console.log("A")
     if(appsidebar.getAttribute("data-colla") == 'true'){
-
+      appsidebar.style.opacity = "1"
       appsidebar.style.display = "block"
+      
       appsidebar.setAttribute("data-colla", 'false' )
     }
     else{
       appsidebar.style.display = "none"
+      appsidebar.style.opacity = "0"
       appsidebar.setAttribute("data-colla", 'true' )
 
     }
@@ -299,7 +301,11 @@ const showSpecies = async (genus) => {
   			  <line class="c-add__ver" id="Line_14" data-name="Line 14" y2="64" transform="translate(32 0)" fill="none"  stroke-width="5"/>
   			  <line class="c-add__hor" id="Line_15" data-name="Line 15" x2="64" transform="translate(0 32)" fill="none"  stroke-width="5"/>
         </button>
-		  </li>`;
+
+      </li>
+      <svg class="c-main-nav__seperator" xmlns="http://www.w3.org/2000/svg" width="100%" height="3" viewBox="0 0 200 1" position="relative">
+          <line id="Line_14" data-name="Line 14" fill="white" stroke-width="2" stroke="white" x2="100%"></line>
+        </svg>`;
     }
 
 
@@ -342,7 +348,10 @@ const showGenus = async (family) => {
   			  <line class="c-add__ver" id="Line_14" data-name="Line 14" y2="64" transform="translate(32 0)" fill="none"   stroke-width="5"/>
   			  <line class="c-add__hor" id="Line_15" data-name="Line 15" x2="64" transform="translate(0 32)" fill="none"   stroke-width="5"/>
         </button>
-		</li>`;
+    </li>
+    <svg class="c-main-nav__seperator" xmlns="http://www.w3.org/2000/svg" width="100%" height="3" viewBox="0 0 200 1" position="relative">
+          <line id="Line_14" data-name="Line 14" fill="white" stroke-width="2" stroke="white" x2="100%"></line>
+        </svg>`;
     }
 
 
@@ -390,7 +399,10 @@ const showFamily = async (order) => {
   			  <line class="c-add__ver" id="Line_14" data-name="Line 14" y2="64" transform="translate(32 0)" fill="none"   stroke-width="5"/>
   			  <line class="c-add__hor" id="Line_15" data-name="Line 15" x2="64" transform="translate(0 32)" fill="none"   stroke-width="5"/>
         </button>
-	  </li>`;
+    </li>
+    <svg class="c-main-nav__seperator" xmlns="http://www.w3.org/2000/svg" width="100%" height="3" viewBox="0 0 200 1" position="relative">
+          <line id="Line_14" data-name="Line 14" fill="white" stroke-width="2" stroke="white" x2="100%"></line>
+        </svg>`;
   }
   sidebar.innerHTML = html;
   let families = document.querySelectorAll('.js-family');
@@ -428,7 +440,10 @@ const showOrder = async (pclass) => {
   			  <line class="c-add__ver" id="Line_14" data-name="Line 14" y2="64" transform="translate(32 0)" fill="none"   stroke-width="5"/>
   			  <line class="c-add__hor" id="Line_15" data-name="Line 15" x2="64" transform="translate(0 32)" fill="none"   stroke-width="5"/>
         </button>
-	  </li>`;
+    </li>
+    <svg class="c-main-nav__seperator" xmlns="http://www.w3.org/2000/svg" width="100%" height="3" viewBox="0 0 200 1" position="relative">
+          <line id="Line_14" data-name="Line 14" fill="white" stroke-width="2" stroke="white" x2="100%"></line>
+        </svg>`;
   }
   sidebar.innerHTML = html;
   let orders = document.querySelectorAll('.js-order');
@@ -466,7 +481,10 @@ const showClass = async (phyl) => {
   			  <line class="c-add__ver" id="Line_14" data-name="Line 14" y2="64" transform="translate(32 0)" fill="none"   stroke-width="5"/>
   			  <line class="c-add__hor" id="Line_15" data-name="Line 15" x2="64" transform="translate(0 32)" fill="none"   stroke-width="5"/>
         </button>
-	  </li>`;
+    </li>
+    <svg class="c-main-nav__seperator" xmlns="http://www.w3.org/2000/svg" width="100%" height="3" viewBox="0 0 200 1" position="relative">
+          <line id="Line_14" data-name="Line 14" fill="white" stroke-width="2" stroke="white" x2="100%"></line>
+        </svg>`;
   }
   sidebar.innerHTML = html;
   let classes = document.querySelectorAll('.js-class');
@@ -506,7 +524,10 @@ const showSub = async (kingdom) => {
   			  <line class="c-add__ver" id="Line_14" data-name="Line 14" y2="64" transform="translate(32 0)" fill="none"   stroke-width="5"/>
   			  <line class="c-add__hor" id="Line_15" data-name="Line 15" x2="64" transform="translate(0 32)" fill="none"   stroke-width="5"/>
         </button>
-	</li>`;
+  </li>
+  <svg class="c-main-nav__seperator" xmlns="http://www.w3.org/2000/svg" width="100%" height="3" viewBox="0 0 200 1" position="relative">
+          <line id="Line_14" data-name="Line 14" fill="white" stroke-width="2" stroke="white" x2="100%"></line>
+        </svg>`;
   }
   sidebar.innerHTML = html;
   let subs = document.querySelectorAll('.js-sub');
@@ -556,9 +577,13 @@ const getKingdomNames = async () => {
   			  <line class="c-add__ver" id="Line_14" data-name="Line 14" y2="64" transform="translate(32 0)" fill="none" stroke-width="5"/>
   			  <line class="c-add__hor" id="Line_15" data-name="Line 15" x2="64" transform="translate(0 32)" fill="none" stroke-width="5"/>
         </button>
-		  </svg>
-
-			</li>`;
+      </svg>
+      
+      </li>
+      <svg class="c-main-nav__seperator" xmlns="http://www.w3.org/2000/svg" width="100%" height="3" viewBox="0 0 200 1" position="relative">
+          <line id="Line_14" data-name="Line 14" fill="white" stroke-width="2" stroke="white" x2="100%"></line>
+        </svg>`;
+      
   });
   sidebar.innerHTML = html;
   let kingdoms = document.querySelectorAll('.js-kingdom');
@@ -589,10 +614,13 @@ const getKingdomNames = async () => {
       showSub(kingdom);
     });
   }
-  let shows = document.querySelectorAll('.js-show-label');
+  if(first){
+    let shows = document.querySelectorAll('.js-show-label');
   shows.forEach((show) => {
     show.dispatchEvent(new CustomEvent('click'));
   });
+  }
+  
   let checkboxes = document.querySelectorAll('.js-checkbox');
   checkboxes.forEach((checkbox) => {
     if (plabels.includes(checkbox.getAttribute('data-name'))) {

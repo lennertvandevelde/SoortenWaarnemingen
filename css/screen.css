@@ -29,7 +29,7 @@
 
   
 
-  --global-color-neutral-xxxx-light: #f2f4ff;
+  --global-color-neutral-xxxx-light: #D9E0FF;
   --global-color-neutral-xxx-light: #98a4d9;
   --global-color-neutral-xx-light: #6b7499;
   --global-color-neutral-x-light: #bcbccb;
@@ -57,7 +57,7 @@
         This would equal to 0.3333333...rem but let the browser do the math
     */
   --global-baseline: calc(1rem / 3);
-  --global-whitespace-xxs: var(--global-baseline); /* = 5px */
+  --global-whitespace: var(--global-baseline); /* = 5px */
   --global-whitespace-xs: calc(var(--global-baseline) * 2); /* = 10px */
   --global-whitespace-sm: calc(var(--global-baseline) * 3); /* = 15px */
   --global-whitespace-md: calc(var(--global-baseline) * 4); /* = 20px */
@@ -114,6 +114,16 @@ html {
   background: var(--global-color-alpha);
   color: white;
   text-shadow: none;
+}
+
+::-webkit-scrollbar{
+  background-color: transparent;
+  width: 10px;
+}
+::-webkit-scrollbar-thumb{
+  background-color: var(--global-color-neutral);
+  opacity: 0.5;
+  border-radius: var(--global-borderRadius);
 }
 
 /*------------------------------------*\
@@ -594,7 +604,7 @@ stroke : var(--global-color-beta);
 
 .c-app__topbar {
   max-width: 100vw;
-  background-color:  var(--global-color-neutral-x-dark);
+  background-color:  var(--global-color-neutral-xx-dark);
   height: 10vh;
 }
 .c-app__topbar__hamburger{
@@ -603,9 +613,10 @@ stroke : var(--global-color-beta);
 }
 
 .c-app__sidebar {
-  background-color: var(--global-color-neutral-x-dark);
-  transition: var(--global-transition-alpha);
+  background-color: var(--global-color-neutral-xx-dark);
+  transition: 1s;
   display: none;
+  opacity: 0;
 }
 
 .c-app__main {
@@ -644,6 +655,7 @@ stroke : var(--global-color-beta);
   .c-app__sidebar {
     display: block;
     border-radius: var(--global-borderRadius);
+    opacity: 1;
   }
   .c-app__topbar{
     display: none;
@@ -708,6 +720,7 @@ stroke : var(--global-color-beta);
 }
 .c-main-nav__item--back {
   border-bottom: 1px solid white;
+  margin-top: 0;
 }
 
 .c-main-nav__link {
@@ -727,23 +740,33 @@ stroke : var(--global-color-beta);
   border: none;
 }
 .KINGDOM {
-  margin-left: 15px;
+  margin-left: calc(var(--global-whitespace) * 3);
 }
 
 .PHYLUM {
-  margin-left: 25px;
+  margin-left: calc(var(--global-whitespace) * 5);
 }
 .CLASS {
-  margin-left: 35px;
+  margin-left: calc(var(--global-whitespace) * 7);
 }
 .ORDER {
-  margin-left: 45px;
+  margin-left: calc(var(--global-whitespace) * 8);
 }
 .FAMILY {
-  margin-left: 55px;
+  margin-left: calc(var(--global-whitespace) * 11);
 }
 .GENUS {
-  margin-left: 65px;
+  margin-left: calc(var(--global-whitespace) * 13);
+}
+
+.c-main-nav__seperator {
+  stroke-dasharray: 200;
+  stroke-dashoffset: 200;
+  transition: var(--global-transition-beta);
+}
+.c-main-nav__item:hover + .c-main-nav__seperator {
+  stroke-dashoffset: 50;
+ 
 }
 
 .c-main-nav__link:hover {
@@ -760,7 +783,7 @@ stroke : var(--global-color-beta);
 .c-main-nav__link:hover,
 .is-selected .c-main-nav__link {
   color: #fff;
-  background-color: var(--global-color-neutral-xx-dark);
+  background-color: var(--global-color-neutral-x-dark);
   /* border-color: var(--global-color-alpha); */
   /* border-left-width: 5px; */
   transform: none;
@@ -834,7 +857,7 @@ stroke : var(--global-color-beta);
 .c-card__header {
   border-bottom: 10px solid var(--global-color-neutral-xxxx-light);
   min-height: 105px;
-  background-color: var(--global-color-neutral-x-dark);
+  background-color: var(--global-color-neutral-xx-dark);
   border-radius: var(--global-borderRadius) var(--global-borderRadius) 0 0;
 }
 
