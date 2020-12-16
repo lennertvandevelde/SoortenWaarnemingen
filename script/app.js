@@ -13,11 +13,11 @@ const checkHamb = function () {
     let appsidebar = document.querySelector('.js-appsidebar');
     console.log('A');
     if (appsidebar.getAttribute('data-colla') == 'true') {
-      appsidebar.classList.add("c-app__sidebar--out")
+      appsidebar.classList.add('c-app__sidebar--out');
 
       appsidebar.setAttribute('data-colla', 'false');
     } else {
-      appsidebar.classList.remove("c-app__sidebar--out")
+      appsidebar.classList.remove('c-app__sidebar--out');
       appsidebar.setAttribute('data-colla', 'true');
     }
   });
@@ -27,18 +27,28 @@ const checkScroll = function () {
   let main = document.querySelector('.js-appmain');
   if (scrollTop) {
     window.addEventListener('scroll', function () {
+      
       if (window.scrollY != 0) {
+        up.disabled = false;
         up.classList.add('c-app__upbutton--enable');
       } else {
+        up.disabled = true;
         up.classList.remove('c-app__upbutton--enable');
       }
     });
     main.addEventListener('scroll', function () {
-      if (main.scrollY != 0) {
+      setTimeout(function () {
+        console.log(main.scroll)
+        if (main.scrollTop != 0) {
+        up.disabled = false;
         up.classList.add('c-app__upbutton--enable');
+        
       } else {
+        up.disabled = true;
         up.classList.remove('c-app__upbutton--enable');
       }
+      }, 100);
+      
     });
   }
 };
@@ -49,7 +59,7 @@ const addScrollButton = function () {
 
   up.addEventListener('click', function () {
     scrollTop = false;
-    up.classList.remove('c-app__upbutton--enable');
+
     main.scrollTo(0, 0);
     window.scrollTo(0, 0);
     console.log(window.scrollY);
@@ -80,9 +90,11 @@ const checkClicks = function () {
     if (saves.includes(add.getAttribute('data-id'))) {
       addsymbol.classList.add('c-clicked');
       setTimeout(function () {
+        add.disabled = true;
         add.classList.add('o-hide-accessible');
       }, 2000);
     } else {
+      add.disabled = false;
       addsymbol.classList.remove('c-clicked');
       add.classList.remove('o-hide-accessible');
     }

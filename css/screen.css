@@ -638,6 +638,13 @@ stroke : var(--global-color-beta);
   position: fixed;
   left: 87%;
   top: 84%;
+  cursor: default;
+  opacity: 0;
+  transition: all 1s;
+  transform-origin: center top;
+}
+.c-app__upbutton--enable{
+  opacity: 0.75;
   height: 40px;
   width: 40px;
   background-color: white;
@@ -645,11 +652,6 @@ stroke : var(--global-color-beta);
   padding: 5px;
   border: 1px solid var(--global-color-neutral-xx-dark);
   cursor: pointer;
-  opacity: 0;
-  transition: all 1s;
-}
-.c-app__upbutton--enable{
-  opacity: 0.75;
 }
 .c-app__upbutton:hover {
   background-color: var(--global-color-neutral-x-light);
@@ -676,16 +678,26 @@ stroke : var(--global-color-beta);
   .c-app__upbutton {
     position: fixed;
     left: 90%;
-    top: 84%;
+    top: 75%;
+    border-radius: 100%;
+    padding: var(--global-whitespace);
+    opacity: 0;
+    width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  }
+  .c-app__upbutton--enable{
+    opacity: 0.75;
+    
     height: 80px;
     width: 80px;
     background-color: white;
     border-radius: 100%;
-    padding: 5px;
+    
     border: 1px solid var(--global-color-neutral-xx-dark);
     cursor: pointer;
   }
-
   .c-app {
     display: grid;
     grid-template-columns: 17rem 1fr;
