@@ -13,13 +13,11 @@ const checkHamb = function () {
     let appsidebar = document.querySelector('.js-appsidebar');
     console.log('A');
     if (appsidebar.getAttribute('data-colla') == 'true') {
-      appsidebar.style.opacity = '1';
-      appsidebar.style.display = 'block';
+      appsidebar.classList.add("c-app__sidebar--out")
 
       appsidebar.setAttribute('data-colla', 'false');
     } else {
-      appsidebar.style.display = 'none';
-      appsidebar.style.opacity = '0';
+      appsidebar.classList.remove("c-app__sidebar--out")
       appsidebar.setAttribute('data-colla', 'true');
     }
   });

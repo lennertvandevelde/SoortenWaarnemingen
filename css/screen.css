@@ -625,6 +625,10 @@ stroke : var(--global-color-beta);
   display: none;
   opacity: 0;
 }
+.c-app__sidebar--out {
+  display: block;
+  opacity: 1;
+}
 
 .c-app__main {
   background-color: var(--global-color-neutral-xxxx-light);
@@ -659,7 +663,7 @@ stroke : var(--global-color-beta);
   fill: var(--global-color-neutral-xx-dark);
 }
 
-@media (min-width: 62em) {
+@media (min-width: 71em) {
 
   .c-app__sidebar {
     display: block;
@@ -832,7 +836,8 @@ stroke : var(--global-color-beta);
   background-color: #fff;
   border-radius: var(--global-borderRadius);
   transition: var(--global-transition-beta);
-  max-width: 85vw;
+  width: 100%;
+
   margin-bottom: var(--global-whitespace-md);
 }
 
@@ -840,7 +845,7 @@ stroke : var(--global-color-beta);
   opacity: 0;
 }
 
-@media screen and (min-width: 62em) {
+@media screen and (min-width: 41em) {
   .c-dashboard {
     display: grid;
   grid-gap: var(--global-whitespace-lg);
@@ -851,16 +856,23 @@ stroke : var(--global-color-beta);
   .c-dashboard__item {
     grid-column: 1 / -1;
     margin-bottom: 0;
+
+    grid-column: span 12;
   }
 }
+
+
+
+
+
 
 /*
     Component: Card
 */
 
 .c-card {
+  position: relative;
   width: 100%;
-  height: 100%;
   border-radius: var(--global-borderRadius);
 }
 
@@ -1087,8 +1099,15 @@ stroke : var(--global-color-beta);
 */
 
 /* x: horizontal */
-
-@media (min-width: 62em) {
+@media (min-width: 41em) {
+  .u-x-span-3-bp3 {
+    grid-column: span 6;
+  }
+@media (min-width: 71em) {
+  .u-x-span-3-bp3 {
+    grid-column: span 4;
+  }
+@media (min-width: 93em) {
   .u-x-span-3-bp3 {
     grid-column: span 3;
   }
@@ -1109,6 +1128,11 @@ stroke : var(--global-color-beta);
     grid-column: span 9;
   }
 }
+
+
+}
+
+
 
 /* y: vertical */
 
