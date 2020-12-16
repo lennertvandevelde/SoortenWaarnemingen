@@ -7,25 +7,23 @@ let first = true;
 let saves = [];
 let chart;
 let scrollTop = true;
-const checkHamb = function() {
-  let hamb = document.querySelector(".js-hamb")
-  hamb.addEventListener("click", function(){
-    let appsidebar =  document.querySelector(".js-appsidebar");
-    console.log("A")
-    if(appsidebar.getAttribute("data-colla") == 'true'){
-      appsidebar.style.opacity = "1"
-      appsidebar.style.display = "block"
-      
-      appsidebar.setAttribute("data-colla", 'false' )
-    }
-    else{
-      appsidebar.style.display = "none"
-      appsidebar.style.opacity = "0"
-      appsidebar.setAttribute("data-colla", 'true' )
+const checkHamb = function () {
+  let hamb = document.querySelector('.js-hamb');
+  hamb.addEventListener('click', function () {
+    let appsidebar = document.querySelector('.js-appsidebar');
+    console.log('A');
+    if (appsidebar.getAttribute('data-colla') == 'true') {
+      appsidebar.style.opacity = '1';
+      appsidebar.style.display = 'block';
 
+      appsidebar.setAttribute('data-colla', 'false');
+    } else {
+      appsidebar.style.display = 'none';
+      appsidebar.style.opacity = '0';
+      appsidebar.setAttribute('data-colla', 'true');
     }
-  })
-}
+  });
+};
 const checkScroll = function () {
   let up = document.querySelector('.js-up');
   let main = document.querySelector('.js-appmain');
@@ -80,14 +78,13 @@ const deleteCard = function (element) {
 const checkClicks = function () {
   let adds = document.querySelectorAll('.js-add');
   adds.forEach((add) => {
-    let addsymbol = add.querySelector(".js-add__symbol")
+    let addsymbol = add.querySelector('.js-add__symbol');
     if (saves.includes(add.getAttribute('data-id'))) {
       addsymbol.classList.add('c-clicked');
       setTimeout(function () {
         add.classList.add('o-hide-accessible');
       }, 2000);
     } else {
-
       addsymbol.classList.remove('c-clicked');
       add.classList.remove('o-hide-accessible');
     }
@@ -125,7 +122,6 @@ const showprevious = function (element) {
   return li;
 };
 const updateChart = function () {
-
   chart.data.labels = plabels;
   chart.data.datasets.data = values;
   chart.update();
@@ -149,6 +145,20 @@ const initChart = function () {
       ],
     },
     options: {
+      plugins: {
+        zoom: {
+          pan: {
+            enabled: true,
+            mode: 'xy', // is panning about the y axis neccessary for bar charts?
+          },
+          zoom: {
+            enabled: true,
+            mode: 'x',
+            sensitivity: 0.01,
+          },
+        },
+      },
+      responsive: true,
       scales: {
         yAxes: [
           {
@@ -252,15 +262,12 @@ const save = async (id) => {
   shows.forEach((show) => {
     show.addEventListener('click', function () {
       if (show.getAttribute('data-checked') == 'false') {
-
         graph = document.querySelector('.js-bar');
         plabels.push(show.getAttribute('data-name'));
         values.push(show.getAttribute('data-count'));
         show.setAttribute('data-checked', true);
         updateChart();
       } else {
-
-
         graph = document.querySelector('.js-bar');
         plabels.splice(plabels.indexOf(show.getAttribute('data-name')), 1);
         values.splice(values.indexOf(show.getAttribute('data-count')), 1);
@@ -279,7 +286,6 @@ const showSpecies = async (genus) => {
   let data = await fetch(`https://api.gbif.org/v1/species/${genus.getAttribute('data-id')}/children?limit=100`)
     .then((r) => r.json())
     .catch((err) => console.error('An error occured:', err));
-
 
   let html = '';
   let loop = true;
@@ -308,7 +314,6 @@ const showSpecies = async (genus) => {
         </svg>`;
     }
 
-
     if (data.results.length <= 100) {
       loop = false;
     }
@@ -317,7 +322,6 @@ const showSpecies = async (genus) => {
     data = await fetch(`https://api.gbif.org/v1/species/${genus.getAttribute('data-id')}/children?limit=100&offset=${offset}`)
       .then((r) => r.json())
       .catch((err) => console.error('An error occured:', err));
-
   }
   sidebar.innerHTML = html;
   addClicks();
@@ -354,7 +358,6 @@ const showGenus = async (family) => {
         </svg>`;
     }
 
-
     if (data.results.length <= 100) {
       loop = false;
     }
@@ -363,7 +366,6 @@ const showGenus = async (family) => {
     data = await fetch(`https://api.gbif.org/v1/species/${family.getAttribute('data-id')}/children?limit=100&offset=${offset}`)
       .then((r) => r.json())
       .catch((err) => console.error('An error occured:', err));
-
   }
   sidebar.innerHTML = html;
   let geni = document.querySelectorAll('.js-genus');
@@ -384,7 +386,7 @@ const showFamily = async (order) => {
     .catch((err) => console.error('An error occured:', err));
 
   let html = '';
-  let i = 0
+  let i = 0;
   for (let result of data.results) {
     i += 1;
     if (result.rank != 'FAMILY') {
@@ -425,7 +427,7 @@ const showOrder = async (pclass) => {
     .catch((err) => console.error('An error occured:', err));
 
   let html = '';
-  let i = 0
+  let i = 0;
   for (let result of data.results) {
     i += 1;
     if (result.rank != 'ORDER') {
@@ -466,7 +468,7 @@ const showClass = async (phyl) => {
     .catch((err) => console.error('An error occured:', err));
 
   let html = '';
-  let i = 0
+  let i = 0;
   for (let result of data.results) {
     i += 1;
     if (result.rank != 'CLASS') {
@@ -503,7 +505,6 @@ const showClass = async (phyl) => {
 };
 
 const showSub = async (kingdom) => {
-
   const data = await fetch(`https://api.gbif.org/v1/species/${kingdom.getAttribute('data-id')}/children?limit=100`)
     .then((r) => r.json())
     .catch((err) => console.error('An error occured:', err));
@@ -511,7 +512,7 @@ const showSub = async (kingdom) => {
   let html = '';
   let i = 0;
   for (let result of data.results) {
-    i+= 1;
+    i += 1;
     if (result.rank != 'PHYLUM' && result.rank != 'ORDER') {
       break;
     }
@@ -567,7 +568,6 @@ const getKingdomNames = async () => {
 
   let html = '';
   data.results.forEach((element) => {
-
     html += `<li class="c-main-nav__item "  >
 				<a class="c-main-nav__link js-kingdom" tabindex="${element.key}" data-id=${element.key} data-name=${element.scientificName} data-rank=${element.rank}>
 					${element.scientificName} (${element.rank})
@@ -583,7 +583,6 @@ const getKingdomNames = async () => {
       <svg class="c-main-nav__seperator" xmlns="http://www.w3.org/2000/svg" width="100%" height="3" viewBox="0 0 200 1" position="relative">
           <line id="Line_14" data-name="Line 14" fill="white" stroke-width="2" stroke="white" x2="100%"></line>
         </svg>`;
-      
   });
   sidebar.innerHTML = html;
   let kingdoms = document.querySelectorAll('.js-kingdom');
@@ -614,26 +613,25 @@ const getKingdomNames = async () => {
       showSub(kingdom);
     });
   }
-  if(first){
+  if (first) {
     let shows = document.querySelectorAll('.js-show-label');
-  shows.forEach((show) => {
-    show.dispatchEvent(new CustomEvent('click'));
-  });
+    shows.forEach((show) => {
+      show.dispatchEvent(new CustomEvent('click'));
+    });
   }
-  
+
   let checkboxes = document.querySelectorAll('.js-checkbox');
   checkboxes.forEach((checkbox) => {
     if (plabels.includes(checkbox.getAttribute('data-name'))) {
       checkbox.checked = true;
     }
-  })
+  });
 
   addClicks();
   first = false;
 };
 
 document.addEventListener('DOMContentLoaded', function () {
-
   sidebar = document.querySelector('.js-list');
   graph = document.querySelector('.js-bar');
   initChart();
