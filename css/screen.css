@@ -383,8 +383,8 @@ input::placeholder {
 }
 .c-form--label{
   display: flex;
-  justify-items: end;
-  flex-direction: row-reverse;
+  justify-content: space-between;
+
 }
 .c-form--sendbutton {
   background-color: var(--global-color-beta);
@@ -892,6 +892,7 @@ stroke : var(--global-color-beta);
 .c-card__body {
   padding: var(--global-whitespace-md);
 }
+
 
 .c-card__header {
   border-bottom: 10px solid var(--global-color-neutral-xxxx-light);
